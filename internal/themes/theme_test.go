@@ -24,7 +24,7 @@ func TestCreateThemes(t *testing.T) {
 
 	repoDirectory = filepath.Dir(filepath.Dir(repoDirectory))
 
-	themesDirectory := fmt.Sprintf(config.DirectoryThemes, repoDirectory)
+	themesDirectory := fmt.Sprintf(config.ThemesDir, repoDirectory)
 	configDirectory := fmt.Sprintf(config.RouteThemes, homeDir)
 
 	err = CreateThemes(configDirectory, themesDirectory)
@@ -33,7 +33,7 @@ func TestCreateThemes(t *testing.T) {
 	newDirectory, err := GetRepoDirectory()
 	c.NoError(err)
 
-	themesDirectory = fmt.Sprintf(config.DirectoryThemes, newDirectory)
+	themesDirectory = fmt.Sprintf(config.ThemesDir, newDirectory)
 
 	c.NoError(err)
 	err = CreateThemes(configDirectory, themesDirectory)

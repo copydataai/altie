@@ -10,18 +10,22 @@ import (
 const (
 	defaultFont     = "monoscape"
 	defaultFontSize = 14
-	// DirectoryThemes is to encapsulate the safe place of variables
-	DirectoryThemes = "%s/themes"
+	// TODO: Delete after implement check in Config
+	ThemesDir = "%s/themes"
+	// ConfigDir is $HOME/.altie directory
+	ConfigDir = "%s/.altie"
 	// RouteConfig is a const to replace by $HOME/.altie/altie.conf
 	RouteConfig = "%s/.altie/altie.conf"
 	// RouteThemes use $HOME/.altie/themes
 	RouteThemes = "%s/.altie/themes"
 )
 
+// TODO: Implement a method to read ThemesDirectory
 type Config struct {
-	HomeDirectory string `toml:"HomeDirectory"`
+	ThemesDirectory string `toml:"ThemesDirectory"`
 }
 
+// TODO: Implement a method to read and don't modify the themes
 type ThemeConfig struct {
 	FontSize int64  `toml:"FontSize"`
 	Font     string `toml:"Font"`
@@ -32,23 +36,23 @@ type ConfigThemes struct {
 	ThemeConfig `toml:"ConfigTheme"`
 }
 
-func createDirConfig(mainDirectory string) (string, error) {
-	configDirectory := fmt.Sprintf(RouteConfig, mainDirectory)
-	err := os.MkdirAll(mainDirectory+"/.altie", os.ModePerm)
-	if err != nil {
-		return "", err
-	}
-
-	return configDirectory, nil
-}
-
-func CreateConfig(mainDirectory string) error {
-	configDirectory, err := createDirConfig(mainDirectory)
+func createDirConfig(homeDir string) error {
+	configDir := fmt.Sprintf(ConfigDir, homeDir)
+	err := os.MkdirAll(configDir, os.ModePerm)
 	if err != nil {
 		return err
 	}
 
-	configFile, err := os.Create(configDirectory)
+	return nil
+}
+
+func CreateConfig(homeDir string) error {
+	err := createDirConfig(homeDir)
+	if err != nil {
+		return err
+	}
+
+	configFile, err := os.Create(fmt.Sprintf(RouteConfig, homeDir))
 	if err != nil {
 		return err
 	}
@@ -57,7 +61,7 @@ func CreateConfig(mainDirectory string) error {
 
 	defaultConfig := &ConfigThemes{
 		Config{
-			HomeDirectory: configDirectory,
+			ThemesDirectory: fmt.Sprintf(RouteThemes, homeDir),
 		},
 		ThemeConfig{
 			FontSize: defaultFontSize,
