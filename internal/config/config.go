@@ -18,6 +18,10 @@ const (
 	RouteConfig = "%s/.altie/altie.conf"
 	// RouteThemes use $HOME/.altie/themes
 	RouteThemes = "%s/.altie/themes"
+	// AlacrittyDir is $HOME/.config/alacritty
+	AlacrittyDir = "%s/.config/alacritty"
+	// AlacrittyConfigDir is $HOME/.config/alacritty/alacritty.yml
+	AlacrittyConfigDir = "%s/.config/alacritty/alacritty.yml"
 )
 
 // TODO: Implement a method to read ThemesDirectory
