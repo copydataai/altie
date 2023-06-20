@@ -98,3 +98,15 @@ func GetHomeDir() (string, error) {
 
 	return homeDir, nil
 }
+
+func CheckConfig(homeDir string) (*ConfigThemes, error) {
+	configAltie := &ConfigThemes{}
+	configAltiePath := fmt.Sprintf(RouteConfig, homeDir)
+
+	_, err := toml.DecodeFile(configAltiePath, configAltie)
+	if err != nil {
+		return nil, err
+	}
+
+	return configAltie, nil
+}
