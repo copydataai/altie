@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/copydataai/altie/internal/config"
 	cp "github.com/otiai10/copy"
 )
 
@@ -43,4 +44,14 @@ func BackUpTheme(alacrittyConfDir string) (string, error) {
 	}
 
 	return backupPath, nil
+}
+
+func CheckAltieThemes(homeDir string) error {
+	themesDir := fmt.Sprintf(config.RouteThemes, homeDir)
+	_, err := os.Stat(themesDir)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
