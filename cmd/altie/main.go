@@ -13,7 +13,7 @@ import (
 	"github.com/pterm/pterm"
 )
 
-func defaultMain(homeDir string) {
+func ListThemes(homeDir string) {
 	dirs := make([]string, 0)
 	pathDirs := make(map[string]string, 0)
 	themesConfig := fmt.Sprintf(config.RouteThemes, homeDir)
@@ -78,9 +78,10 @@ func main() {
 		return
 	}
 
-	configThemes, err := config.CheckConfig(homeDir)
+	// TODO: implement a method to use altie.conf
+	_, err = config.CheckConfig(homeDir)
 	if os.IsNotExist(err) {
-		pterm.Printfln("Do you want to create a default altie config in %s/.altie/altie.conf", homeDir)
+		pterm.Printfln("Do you want to create a default altie config in %s/.altie/altie.conf?", homeDir)
 		result, _ := pterm.DefaultInteractiveConfirm.Show()
 		if !result {
 			pterm.Info.Printfln("You will need to create manual an altie.config in %s/.altie/altie.conf", homeDir)
@@ -92,7 +93,7 @@ func main() {
 			return
 		}
 		pterm.Info.Printfln("it's created the altie.conf in %s/.altie/altie.conf", homeDir)
-		configThemes, err = config.CheckConfig(homeDir)
+		_, err = config.CheckConfig(homeDir)
 	}
 
 	if err != nil {
@@ -100,20 +101,31 @@ func main() {
 		return
 	}
 
-	pterm.Print(configThemes)
+	err = themes.CheckAltieThemes(homeDir)
+	if os.IsNotExist(err) {
+		pterm.Printfln("Do you want to copy all the themes to %s/.altie/themes?", homeDir)
+		result, _ := pterm.DefaultInteractiveConfirm.Show()
+		if !result {
+			pterm.Info.Printfln("You will need to create manual a dir themes with all themes you want in %s/.altie/themes", homeDir)
+			return
+		}
 
-	// repoDirectory, err := themes.GetRepoDirectory()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// 	return
-	// }
+		configDir := fmt.Sprintf(config.RouteThemes, homeDir)
+		themeRepoDir, err := themes.GetRepoDirectory()
+		if err != nil {
+			pterm.Error.Println("Please Make sure it is in the repository directory")
+			pterm.Error.PrintOnError(err)
+		}
 
-	// themesDirectory := fmt.Sprintf(config.DirectoryThemes, repoDirectory)
-	// configDirectory := fmt.Sprintf(config.RouteThemes, homeDir)
-	// err = themes.CreateThemes(configDirectory, themesDirectory)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// 	return
-	// }
+		err = themes.CreateThemes(configDir, themeRepoDir)
+		if err != nil {
+			pterm.Error.PrintOnError(err)
+			return
+		}
+
+		pterm.Info.Printfln("it's created the themes in %s/.altie/themes", homeDir)
+	}
+
+	ListThemes(homeDir)
 
 }
