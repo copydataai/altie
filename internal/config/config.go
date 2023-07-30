@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/BurntSushi/toml"
 )
@@ -31,13 +32,42 @@ type Config struct {
 
 // TODO: Implement a method to read and don't modify the themes
 type ThemeConfig struct {
-	FontSize int64  `toml:"FontSize"`
-	Font     string `toml:"Font"`
+	Themes   []string  `toml:"Themes"`
+	LastMod  time.Time `toml:"LastModified"`
+	FontSize int64     `toml:"FontSize"`
+	Font     string    `toml:"Font"`
 }
 
 type ConfigThemes struct {
 	Config      `toml:"Config"`
 	ThemeConfig `toml:"ConfigTheme"`
+}
+
+func checkLastModThemes(homeDir string, lastMod time.Time) (bool, error) {
+	themesDir := fmt.Sprintf(RouteThemes, homeDir)
+
+	info, err := os.Lstat(themesDir)
+	if err != nil {
+		return false, err
+	}
+
+	difference := info.ModTime().Compare(lastMod)
+	if difference < 1 {
+		return false, nil
+	}
+
+	return true, nil
+}
+
+func readTomlConfig(homeDir string) (*ConfigThemes, error) {
+	configThemes := &ConfigThemes{}
+	configDir := fmt.Sprintf(RouteConfig, homeDir)
+	_, err := toml.DecodeFile(configDir, configThemes)
+	if err != nil {
+		return nil, err
+	}
+
+	return configThemes, nil
 }
 
 func createDirConfig(homeDir string) error {
@@ -68,6 +98,8 @@ func CreateConfig(homeDir string) error {
 			ThemesDirectory: fmt.Sprintf(RouteThemes, homeDir),
 		},
 		ThemeConfig{
+			Themes:   []string{},
+			LastMod:  time.Now(),
 			FontSize: defaultFontSize,
 			Font:     defaultFont,
 		},
