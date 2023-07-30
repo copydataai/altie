@@ -59,6 +59,27 @@ func checkLastModThemes(homeDir string, lastMod time.Time) (bool, error) {
 	return true, nil
 }
 
+func saveTomlConfig(homeDir string, config *ConfigThemes) error {
+	configDir := fmt.Sprintf(RouteConfig, homeDir)
+	_, err := toml.DecodeFile(configDir, config)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (config *ConfigThemes) SetModifiedThemes(homeDir string, lastMod time.Time, listThemes []string) error {
+	config.LastMod = lastMod
+	config.ThemeConfig.Themes = listThemes
+	err := saveTomlConfig(homeDir, config)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func readTomlConfig(homeDir string) (*ConfigThemes, error) {
 	configThemes := &ConfigThemes{}
 	configDir := fmt.Sprintf(RouteConfig, homeDir)
