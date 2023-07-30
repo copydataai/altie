@@ -3,9 +3,9 @@ package themes
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"time"
 
-	"github.com/copydataai/altie/internal/config"
 	cp "github.com/otiai10/copy"
 )
 
@@ -35,6 +35,29 @@ func ApplyTheme(pathTheme, alacrittyConfDir string) error {
 	return nil
 }
 
+func ListThemes(homeDir, dirThemes string) ([]string, error) {
+	dirs := make([]string, 0)
+	themesConfig := fmt.Sprintf(dirThemes, homeDir)
+	err := filepath.Walk(themesConfig, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return nil
+		}
+		nameFile := info.Name()
+		if nameFile == "themes" {
+			return nil
+		}
+
+		dirs = append(dirs, nameFile)
+
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return dirs, nil
+}
+
 func BackUpTheme(alacrittyConfDir string) (string, error) {
 	year, month, day := time.Now().Date()
 	backupPath := fmt.Sprintf("%s.%d%d%d.bak", alacrittyConfDir, year, month, day)
@@ -46,8 +69,8 @@ func BackUpTheme(alacrittyConfDir string) (string, error) {
 	return backupPath, nil
 }
 
-func CheckAltieThemes(homeDir string) error {
-	themesDir := fmt.Sprintf(config.RouteThemes, homeDir)
+func CheckAltieThemes(homeDir, dirThemes string) error {
+	themesDir := fmt.Sprintf(dirThemes, homeDir)
 	_, err := os.Stat(themesDir)
 	if err != nil {
 		return err
