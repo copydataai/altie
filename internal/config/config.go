@@ -80,17 +80,6 @@ func (config *ConfigThemes) SetModifiedThemes(homeDir string, lastMod time.Time,
 	return nil
 }
 
-func readTomlConfig(homeDir string) (*ConfigThemes, error) {
-	configThemes := &ConfigThemes{}
-	configDir := fmt.Sprintf(RouteConfig, homeDir)
-	_, err := toml.DecodeFile(configDir, configThemes)
-	if err != nil {
-		return nil, err
-	}
-
-	return configThemes, nil
-}
-
 func createDirConfig(homeDir string) error {
 	configDir := fmt.Sprintf(ConfigDir, homeDir)
 	err := os.MkdirAll(configDir, os.ModePerm)
