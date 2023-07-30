@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 
 	"log"
 
@@ -14,35 +13,21 @@ import (
 )
 
 func ListThemes(homeDir string) {
-	dirs := make([]string, 0)
-	pathDirs := make(map[string]string, 0)
-	themesConfig := fmt.Sprintf(config.RouteThemes, homeDir)
-	err := filepath.Walk(themesConfig, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			pterm.Error.PrintOnError(err)
-		}
-		nameFile := info.Name()
-		if nameFile == "themes" {
-			return nil
-		}
+	dirs, err := themes.ListThemes(homeDir, config.RouteThemes)
+	if err != nil {
+		pterm.Error.PrintOnError(err)
+		return
+	}
+	inteSelection := pterm.DefaultInteractiveSelect.WithOptions(dirs)
 
-		dirs = append(dirs, nameFile)
-		pathDirs[nameFile] = path
-
-		return nil
-	})
+	selectedOption, err := inteSelection.Show()
 	if err != nil {
 		pterm.Error.PrintOnError(err)
 		return
 	}
 
-	selectedOption, err := pterm.DefaultInteractiveSelect.WithOptions(dirs).Show()
-	if err != nil {
-		pterm.Error.PrintOnError(err)
-		return
-	}
-
-	path, _ := pathDirs[selectedOption]
+	// TODO: Implement a method to read ThemesDirectory and concatenate them
+	path := fmt.Sprintf(config.RouteThemes+"/%s", homeDir, selectedOption)
 
 	pterm.Info.Println(path)
 	alacrittyConfDir := fmt.Sprintf(config.AlacrittyConfigDir, homeDir)
@@ -101,7 +86,7 @@ func main() {
 		return
 	}
 
-	err = themes.CheckAltieThemes(homeDir)
+	err = themes.CheckAltieThemes(homeDir, config.RouteThemes)
 	if os.IsNotExist(err) {
 		pterm.Printfln("Do you want to copy all the themes to %s/.altie/themes?", homeDir)
 		result, _ := pterm.DefaultInteractiveConfirm.Show()
@@ -127,5 +112,4 @@ func main() {
 	}
 
 	ListThemes(homeDir)
-
 }
