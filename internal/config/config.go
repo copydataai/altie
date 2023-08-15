@@ -25,7 +25,6 @@ const (
 	AlacrittyConfigDir = "%s/.config/alacritty/alacritty.yml"
 )
 
-// TODO: Implement a method to read ThemesDirectory
 type Config struct {
 	ThemesDirectory string `toml:"ThemesDirectory"`
 }
@@ -46,7 +45,7 @@ type ConfigThemes struct {
 func checkLastModThemes(homeDir string, lastMod time.Time) (bool, error) {
 	themesDir := fmt.Sprintf(RouteThemes, homeDir)
 
-	info, err := os.Lstat(themesDir)
+	info, err := os.Stat(themesDir)
 	if err != nil {
 		return false, err
 	}
@@ -59,9 +58,8 @@ func checkLastModThemes(homeDir string, lastMod time.Time) (bool, error) {
 	return true, nil
 }
 
-func saveTomlConfig(homeDir string, config *ConfigThemes) error {
-	configDir := fmt.Sprintf(RouteConfig, homeDir)
-	_, err := toml.DecodeFile(configDir, config)
+func saveTomlConfig(configFile string, config *ConfigThemes) error {
+	_, err := toml.DecodeFile(configFile, config)
 	if err != nil {
 		return err
 	}
@@ -80,23 +78,14 @@ func (config *ConfigThemes) SetModifiedThemes(homeDir string, lastMod time.Time,
 	return nil
 }
 
-func createDirConfig(homeDir string) error {
-	configDir := fmt.Sprintf(ConfigDir, homeDir)
+func CreateConfig(mainDir string) error {
+	configDir := fmt.Sprintf(ConfigDir, mainDir)
 	err := os.MkdirAll(configDir, os.ModePerm)
 	if err != nil {
 		return err
 	}
 
-	return nil
-}
-
-func CreateConfig(homeDir string) error {
-	err := createDirConfig(homeDir)
-	if err != nil {
-		return err
-	}
-
-	configFile, err := os.Create(fmt.Sprintf(RouteConfig, homeDir))
+	configFile, err := os.Create(fmt.Sprintf(RouteConfig, mainDir))
 	if err != nil {
 		return err
 	}
@@ -105,11 +94,11 @@ func CreateConfig(homeDir string) error {
 
 	defaultConfig := &ConfigThemes{
 		Config{
-			ThemesDirectory: fmt.Sprintf(RouteThemes, homeDir),
+			ThemesDirectory: fmt.Sprintf(RouteThemes, mainDir),
 		},
 		ThemeConfig{
 			Themes:   []string{},
-			LastMod:  time.Now(),
+			LastMod:  time.Time{},
 			FontSize: defaultFontSize,
 			Font:     defaultFont,
 		},
@@ -141,11 +130,10 @@ func GetHomeDir() (string, error) {
 	return homeDir, nil
 }
 
-func CheckConfig(homeDir string) (*ConfigThemes, error) {
+func CheckConfig(configDir string) (*ConfigThemes, error) {
 	configAltie := &ConfigThemes{}
-	configAltiePath := fmt.Sprintf(RouteConfig, homeDir)
 
-	_, err := toml.DecodeFile(configAltiePath, configAltie)
+	_, err := toml.DecodeFile(configDir, configAltie)
 	if err != nil {
 		return nil, err
 	}
