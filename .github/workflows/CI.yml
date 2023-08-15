@@ -1,0 +1,23 @@
+# This workflow is to test and check
+# the
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set Up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+          check-latest: true
+
+      - name: Check coverage
+        run: bash scripts/check_coverage.bash
