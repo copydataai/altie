@@ -35,10 +35,9 @@ func ApplyTheme(pathTheme, alacrittyConfDir string) error {
 	return nil
 }
 
-func ListThemes(homeDir, dirThemes string) ([]string, error) {
+func ListThemes(dirThemes string) ([]string, error) {
 	dirs := make([]string, 0)
-	themesConfig := fmt.Sprintf(dirThemes, homeDir)
-	err := filepath.Walk(themesConfig, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(dirThemes, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return nil
 		}
@@ -69,9 +68,8 @@ func BackUpTheme(alacrittyConfDir string) (string, error) {
 	return backupPath, nil
 }
 
-func CheckAltieThemes(homeDir, dirThemes string) error {
-	themesDir := fmt.Sprintf(dirThemes, homeDir)
-	_, err := os.Stat(themesDir)
+func CheckAltieThemes(dirThemes string) error {
+	_, err := os.Stat(dirThemes)
 	if err != nil {
 		return err
 	}
