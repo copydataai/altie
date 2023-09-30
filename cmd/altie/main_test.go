@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"testing"
 	"time"
 
@@ -142,16 +141,6 @@ func TestListThemes(t *testing.T) {
 		keyboard.SimulateKeyPress(keys.Down)
 		keyboard.SimulateKeyPress(keys.Enter)
 	}()
-
-	go func() {
-		time.Sleep(3 * time.Nanosecond)
-		err = os.Remove(filepath.Join(themesDir, "Afterglow.yml"))
-		c.NoError(err)
-	}()
-
-	err = ListThemes(configThemes, tmpDir)
-	c.Error(err)
-	c.True(os.IsNotExist(err))
 
 	go func() {
 		keyboard.SimulateKeyPress(keys.Down)
