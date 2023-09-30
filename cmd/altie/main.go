@@ -4,11 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"log"
-
 	"github.com/copydataai/altie/internal/config"
 	"github.com/copydataai/altie/internal/themes"
 	"github.com/hackebrot/turtle"
+	cp "github.com/otiai10/copy"
 	"github.com/pterm/pterm"
 )
 
@@ -17,9 +16,8 @@ func ListThemes(altieConfig *config.ConfigThemes, homeDir string) error {
 	if err != nil {
 		return err
 	}
-	inteSelection := pterm.DefaultInteractiveSelect.WithOptions(dirs)
 
-	selectedOption, err := inteSelection.Show()
+	selectedOption, err := pterm.DefaultInteractiveSelect.WithOptions(dirs).Show()
 	if err != nil {
 		return err
 	}
@@ -35,7 +33,7 @@ func ListThemes(altieConfig *config.ConfigThemes, homeDir string) error {
 
 	pterm.Info.Printfln("The last theme was saved as %s", backupTheme)
 
-	err = themes.ApplyTheme(path, alacrittyConfDir)
+	err = cp.Copy(path, alacrittyConfDir)
 	if err != nil {
 		return err
 	}
@@ -45,12 +43,10 @@ func ListThemes(altieConfig *config.ConfigThemes, homeDir string) error {
 	return nil
 }
 
-func main() {
-	pterm.Printfln("Welcome to Altie \nan alternative version of alacritty-themes\nhas been building with Go %s", turtle.Emojis["bear"])
+func CreateConfig() error {
 	homeDir, err := config.GetHomeDir()
 	if err != nil {
-		log.Fatal(err)
-		return
+		return err
 	}
 
 	configDir := fmt.Sprintf(config.RouteConfig, homeDir)
@@ -61,21 +57,20 @@ func main() {
 		result, _ := pterm.DefaultInteractiveConfirm.Show()
 		if !result {
 			pterm.Info.Printfln("You will need to create manual an altie.config in %s/.altie/altie.conf", homeDir)
-			return
+			// Create a new error when he press CTRL+C
+			return nil
 		}
 		err = config.CreateConfig(homeDir)
 		if err != nil {
-			pterm.Error.PrintOnError(err)
-			return
+			return err
 		}
 
 		pterm.Info.Printfln("it's created the altie.conf in %s/.altie/altie.conf", homeDir)
-		_, err = config.CheckConfig(homeDir)
+		altieConfig, err = config.CheckConfig(configDir)
 	}
 
 	if err != nil {
-		pterm.Error.PrintOnError(err)
-		return
+		return err
 	}
 
 	err = themes.CheckAltieThemes(altieConfig.Config.ThemesDirectory)
@@ -84,26 +79,37 @@ func main() {
 		result, _ := pterm.DefaultInteractiveConfirm.Show()
 		if !result {
 			pterm.Info.Printfln("You will need to create manual a dir themes with all themes you want in %s/.altie/themes", homeDir)
-			return
+			return nil
 		}
 
-		configDir := fmt.Sprintf(config.RouteThemes, homeDir)
-		themeRepoDir, err := themes.GetRepoDirectory()
+		repoDir, err := themes.GetRepoDirectory()
 		if err != nil {
 			pterm.Error.Println("Please Make sure it is in the repository directory")
-			pterm.Error.PrintOnError(err)
+
+			return err
 		}
 
-		err = themes.CreateThemes(configDir, themeRepoDir)
+		themeRepoDir := fmt.Sprintf(config.ThemesDir, repoDir)
+		err = cp.Copy(themeRepoDir, altieConfig.Config.ThemesDirectory)
 		if err != nil {
-			pterm.Error.PrintOnError(err)
-			return
+			return err
 		}
 
 		pterm.Info.Printfln("it's created the themes in %s/.altie/themes", homeDir)
 	}
 
 	err = ListThemes(altieConfig, homeDir)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func main() {
+	pterm.Printfln("Welcome to Altie \nan alternative version of alacritty-themes\nhas been building with Go %s", turtle.Emojis["bear"])
+
+	err := CreateConfig()
 	if err != nil {
 		pterm.Error.PrintOnError(err)
 	}

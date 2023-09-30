@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
-
-	cp "github.com/otiai10/copy"
 )
 
 func GetRepoDirectory() (string, error) {
@@ -15,24 +14,12 @@ func GetRepoDirectory() (string, error) {
 		return "", err
 	}
 
+	if strings.Contains(dirPath, "cmd/altie") {
+		dirPath = filepath.Dir(dirPath)
+		dirPath = filepath.Dir(dirPath)
+	}
+
 	return dirPath, nil
-}
-
-func CreateThemes(configDirectory, themesDirectory string) error {
-	err := cp.Copy(themesDirectory, configDirectory)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func ApplyTheme(pathTheme, alacrittyConfDir string) error {
-	err := cp.Copy(pathTheme, alacrittyConfDir)
-	if err != nil {
-		return err
-	}
-	return nil
 }
 
 func ListThemes(dirThemes string) ([]string, error) {
