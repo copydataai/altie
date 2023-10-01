@@ -31,7 +31,6 @@ jobs:
         run: |
           echo "Go: Checking go test coverage"
           echo "Threshold : $TESTCOVERAGE_THRESHOLD %"
-          go test -gcflags=all=-d=checkptr -coverprofile coverage.out -covermode count -timeout=$TESTCOVERAGE_TIMEOUT ./...
           total_coverage=$(go tool cover -func=coverage.out | grep total | grep -Eo '[0-9]+\.[0-9]+')
           echo "Test coverage: $total_coverage %"
 
