@@ -1,11 +1,16 @@
 package themes
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+)
+
+var (
+	ErrNotOnRepoDir = errors.New("you are not on the repo directory")
 )
 
 func GetRepoDirectory() (string, error) {
@@ -14,10 +19,12 @@ func GetRepoDirectory() (string, error) {
 		return "", err
 	}
 
-	if strings.Contains(dirPath, "cmd/altie") {
-		dirPath = filepath.Dir(dirPath)
-		dirPath = filepath.Dir(dirPath)
+	if !strings.Contains(dirPath, "altie") {
+		return "", ErrNotOnRepoDir
 	}
+
+	dirPath = filepath.Dir(dirPath)
+	dirPath = filepath.Dir(dirPath)
 
 	return dirPath, nil
 }

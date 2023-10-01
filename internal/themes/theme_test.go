@@ -11,8 +11,8 @@ import (
 )
 
 func TestListThemes(t *testing.T) {
-	// Test case 1: Empty directory
 	c := require.New(t)
+
 	emptyDir := ""
 	expectedEmptyDir := []string{}
 
@@ -24,15 +24,46 @@ func TestListThemes(t *testing.T) {
 	dirWithThemes, err := GetRepoDirectory()
 	c.NoError(err)
 
-	dirWithThemes = filepath.Dir(dirWithThemes)
-	dirWithThemes = filepath.Dir(dirWithThemes)
-
 	dirWithThemes = filepath.Join(dirWithThemes, "themes")
 
 	expectedDirWithThemes := "3024.dark.yml"
 	resultDirWithThemes, errDirWithThemes := ListThemes(dirWithThemes)
 	c.NoError(errDirWithThemes)
 	c.Contains(resultDirWithThemes, expectedDirWithThemes)
+}
+
+func TestGetRepoDirectory(t *testing.T) {
+	c := require.New(t)
+
+	tmpDir, err := os.MkdirTemp("", "test")
+	c.NoError(err)
+
+	defer os.RemoveAll(tmpDir)
+
+	dir, err := GetRepoDirectory()
+	c.NoError(err)
+	c.NotEmpty(dir)
+
+	subDir := filepath.Join(tmpDir, "subtest")
+
+	err = os.MkdirAll(subDir, os.ModePerm)
+	c.NoError(err)
+
+	err = os.Chdir(subDir)
+	c.NoError(err)
+
+	dir, err = GetRepoDirectory()
+	c.Error(err)
+	c.EqualError(err, ErrNotOnRepoDir.Error())
+	c.Empty(dir)
+
+	err = os.RemoveAll(subDir)
+	c.NoError(err)
+
+	dir, err = GetRepoDirectory()
+	c.Error(err)
+	c.EqualError(err, fmt.Errorf("getwd: no such file or directory").Error())
+	c.Empty(dir)
 }
 
 func TestBackUpTheme(t *testing.T) {
