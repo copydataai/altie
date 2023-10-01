@@ -31,10 +31,10 @@ type Config struct {
 
 // TODO: Implement a method to read and don't modify the themes
 type ThemeConfig struct {
-	Themes   []string  `toml:"Themes"`
-	LastMod  time.Time `toml:"LastModified"`
-	FontSize int64     `toml:"FontSize"`
-	Font     string    `toml:"Font"`
+	Themes   []string `toml:"Themes"`
+	LastMod  string   `toml:"LastModified"`
+	FontSize int64    `toml:"FontSize"`
+	Font     string   `toml:"Font"`
 }
 
 type ConfigThemes struct {
@@ -58,19 +58,18 @@ func checkLastModThemes(homeDir string, lastMod time.Time) (bool, error) {
 	return true, nil
 }
 
-func saveTomlConfig(configFile string, config *ConfigThemes) error {
-	_, err := toml.DecodeFile(configFile, config)
+func (config *ConfigThemes) SetModifiedThemes(homeDir string, lastMod time.Time, listThemes []string) error {
+	config.LastMod = lastMod.Format(time.RFC3339)
+	config.ThemeConfig.Themes = listThemes
+
+	configFile, err := os.Create(fmt.Sprintf(RouteConfig, homeDir))
 	if err != nil {
 		return err
 	}
 
-	return nil
-}
+	defer configFile.Close()
 
-func (config *ConfigThemes) SetModifiedThemes(homeDir string, lastMod time.Time, listThemes []string) error {
-	config.LastMod = lastMod
-	config.ThemeConfig.Themes = listThemes
-	err := saveTomlConfig(homeDir, config)
+	err = encodeTomlConfig(configFile, config)
 	if err != nil {
 		return err
 	}
@@ -80,6 +79,7 @@ func (config *ConfigThemes) SetModifiedThemes(homeDir string, lastMod time.Time,
 
 func CreateConfig(mainDir string) error {
 	configDir := fmt.Sprintf(ConfigDir, mainDir)
+
 	err := os.MkdirAll(configDir, os.ModePerm)
 	if err != nil {
 		return err
@@ -98,13 +98,13 @@ func CreateConfig(mainDir string) error {
 		},
 		ThemeConfig{
 			Themes:   []string{},
-			LastMod:  time.Time{},
+			LastMod:  "",
 			FontSize: defaultFontSize,
 			Font:     defaultFont,
 		},
 	}
 
-	err = createTomlConfig(configFile, defaultConfig)
+	err = encodeTomlConfig(configFile, defaultConfig)
 	if err != nil {
 		return err
 	}
@@ -112,7 +112,7 @@ func CreateConfig(mainDir string) error {
 	return nil
 }
 
-func createTomlConfig(configFile *os.File, configTheme *ConfigThemes) error {
+func encodeTomlConfig(configFile *os.File, configTheme *ConfigThemes) error {
 	err := toml.NewEncoder(configFile).Encode(configTheme)
 	if err != nil {
 		return err

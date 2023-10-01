@@ -40,7 +40,7 @@ func TestCreateConfig(t *testing.T) {
 		},
 		ThemeConfig{
 			Themes:   []string{},
-			LastMod:  time.Time{},
+			LastMod:  "",
 			FontSize: defaultFontSize,
 			Font:     defaultFont,
 		},
@@ -71,7 +71,7 @@ func TestReadConfig(t *testing.T) {
 		},
 		ThemeConfig: ThemeConfig{
 			Themes:   []string{},
-			LastMod:  time.Time{},
+			LastMod:  "",
 			FontSize: 14,
 			Font:     "monoscape",
 		},
@@ -81,7 +81,56 @@ func TestReadConfig(t *testing.T) {
 	c.Error(err)
 	c.Nil(config)
 }
-func TestSaveTomlConfig(t *testing.T) {
+
+func TestSetModifiedThemes(t *testing.T) {
+	c := require.New(t)
+
+	tmpDir, err := os.MkdirTemp("", "test")
+	c.NoError(err, "Failed to create temporary directory: %v", err)
+
+	defer os.RemoveAll(tmpDir)
+
+	err = CreateConfig(tmpDir)
+	c.NoError(err, "Failed to create config: %v", err)
+
+	configFile := fmt.Sprintf(RouteConfig, tmpDir)
+
+	config, err := CheckConfig(configFile)
+	c.NoError(err)
+	c.EqualValues(&ConfigThemes{
+		Config: Config{
+			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+		},
+		ThemeConfig: ThemeConfig{
+			Themes:   []string{},
+			LastMod:  "",
+			FontSize: defaultFontSize,
+			Font:     defaultFont,
+		},
+	}, config)
+
+	timeNow := time.Now()
+
+	err = config.SetModifiedThemes(tmpDir, timeNow, []string{"Hello", "world", "again"})
+	c.NoError(err)
+
+	config, err = CheckConfig(configFile)
+	c.NoError(err)
+	c.EqualValues(&ConfigThemes{
+		Config: Config{
+			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+		},
+		ThemeConfig: ThemeConfig{
+			Themes:   []string{"Hello", "world", "again"},
+			LastMod:  timeNow.Format(time.RFC3339),
+			FontSize: defaultFontSize,
+			Font:     defaultFont,
+		},
+	}, config)
+
+}
+
+func TestEncodeTomlConfig(t *testing.T) {
 	// Test case 1: Decoding valid TOML file
 	c := require.New(t)
 	tmpDir, err := os.MkdirTemp("", "test")
@@ -92,19 +141,54 @@ func TestSaveTomlConfig(t *testing.T) {
 	err = CreateConfig(tmpDir)
 	c.NoError(err, "Failed to create config: %v", err)
 
-	config := &ConfigThemes{}
+	configDir := filepath.Join(tmpDir, ".altie", "altie.conf")
 
-	configFile := filepath.Join(tmpDir, ".altie", "altie.conf")
+	config, err := CheckConfig(configDir)
+	c.NoError(err)
+	c.NotNil(config)
+	c.EqualValues(&ConfigThemes{
+		Config: Config{
+			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+		},
+		ThemeConfig: ThemeConfig{
+			Themes:   []string{},
+			LastMod:  "",
+			FontSize: defaultFontSize,
+			Font:     defaultFont,
+		},
+	}, config)
 
-	err = saveTomlConfig(configFile, config)
+	confFile, err := os.OpenFile(configDir, os.O_RDWR, os.ModePerm)
 	c.NoError(err)
 
-	// Test case 2: Decoding invalid TOML file
-	err = saveTomlConfig(tmpDir, config)
-	c.Error(err)
+	config.ThemeConfig.Font = "Mononoki"
+	config.ThemeConfig.FontSize = 64
 
-	// Test case 3: Decoding empty TOML file
-	err = saveTomlConfig(tmpDir, nil)
+	err = encodeTomlConfig(confFile, config)
+	c.NoError(err)
+
+	confFile.Close()
+
+	config, err = CheckConfig(configDir)
+	c.NoError(err)
+	c.EqualValues(&ConfigThemes{
+		Config: Config{
+			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+		},
+		ThemeConfig: ThemeConfig{
+			Themes:   []string{},
+			LastMod:  "",
+			FontSize: 64,
+			Font:     "Mononoki",
+		},
+	}, config)
+
+	confFile, err = os.Open(configDir)
+	c.NoError(err)
+
+	confFile.Close()
+
+	err = encodeTomlConfig(confFile, config)
 	c.Error(err)
 }
 

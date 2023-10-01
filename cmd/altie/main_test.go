@@ -113,7 +113,7 @@ func TestListThemes(t *testing.T) {
 		},
 		ThemeConfig: config.ThemeConfig{
 			Themes:   themes,
-			LastMod:  time.Time{},
+			LastMod:  "",
 			FontSize: 0,
 			Font:     "",
 		},
