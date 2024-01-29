@@ -1,0 +1,31 @@
+[colors]
+author = "Rooster"
+name = "SOS"
+
+[colors.bright]
+black = "#373b43"
+blue = "#afb171"
+cyan = "#63e860"
+green = "#fbfd59"
+magenta = "#b387e7"
+red = "#fdcd39"
+white = "#efdecb"
+yellow = "#deac40"
+
+[colors.cursor]
+cursor = "#78796f"
+text = "#373b43"
+
+[colors.normal]
+black = "#373b43"
+blue = "#afb171"
+cyan = "#63e860"
+green = "#fbfd59"
+magenta = "#b387e7"
+red = "#fdcd39"
+white = "#efdecb"
+yellow = "#deac40"
+
+[colors.primary]
+background = "#373b43"
+foreground = "#78796f"

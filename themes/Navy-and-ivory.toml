@@ -1,0 +1,31 @@
+[colors]
+author = "hal"
+name = "Navy and Ivory"
+
+[colors.bright]
+black = "#065f73"
+blue = "#61778d"
+cyan = "#9ed9d8"
+green = "#a2d9b1"
+magenta = "#ff99a1"
+red = "#ef5847"
+white = "#f6f6c9"
+yellow = "#beb090"
+
+[colors.cursor]
+cursor = "#e8dfd6"
+text = "#021b21"
+
+[colors.normal]
+black = "#032c36"
+blue = "#2e3340"
+cyan = "#44b5b1"
+green = "#7cbf9e"
+magenta = "#ff5879"
+red = "#c2454e"
+white = "#f2f1b9"
+yellow = "#8a7a63"
+
+[colors.primary]
+background = "#021b21"
+foreground = "#e8dfd6"

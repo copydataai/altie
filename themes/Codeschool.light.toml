@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Codeschool (light)"
+
+[colors.bright]
+black = "#3f4944"
+blue = "#484d79"
+cyan = "#b02f30"
+green = "#237986"
+magenta = "#c59820"
+red = "#2a5491"
+white = "#b5d8f6"
+yellow = "#a03b1e"
+
+[colors.cursor]
+cursor = "#2a343a"
+text = "#b5d8f6"
+
+[colors.normal]
+black = "#232c31"
+blue = "#484d79"
+cyan = "#b02f30"
+green = "#237986"
+magenta = "#c59820"
+red = "#2a5491"
+white = "#9ea7a6"
+yellow = "#a03b1e"
+
+[colors.primary]
+background = "#b5d8f6"
+foreground = "#2a343a"

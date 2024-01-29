@@ -1,0 +1,31 @@
+[colors]
+author = "Escapist"
+name = "Dawn"
+
+[colors.bright]
+black = "#5F5F5F"
+blue = "#696057"
+cyan = "#525F66"
+green = "#6F6749"
+magenta = "#6F5A59"
+red = "#785850"
+white = "#CDCDCD"
+yellow = "#776049"
+
+[colors.cursor]
+cursor = "#9B9081"
+text = "#181B20"
+
+[colors.normal]
+black = "#353535"
+blue = "#61564B"
+cyan = "#435861"
+green = "#6D6137"
+magenta = "#6B4A49"
+red = "#744B40"
+white = "#B3B3B3"
+yellow = "#765636"
+
+[colors.primary]
+background = "#181B20"
+foreground = "#9B9081"

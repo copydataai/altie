@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Fishbone"
+
+[colors.bright]
+black = "#344040"
+blue = "#5177a5"
+cyan = "#7859a5"
+green = "#51a55f"
+magenta = "#bf6e63"
+red = "#bf6367"
+white = "#876f6f"
+yellow = "#aea75d"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#293b3b"
+blue = "#416ea5"
+cyan = "#714da5"
+green = "#41a551"
+magenta = "#bf6053"
+red = "#bf5357"
+white = "#876868"
+yellow = "#aea64f"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

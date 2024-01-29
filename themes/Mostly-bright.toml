@@ -1,0 +1,31 @@
+[colors]
+author = "m83"
+name = "Mostly Bright"
+
+[colors.bright]
+black = "#B3B3B3"
+blue = "#5DC7EA"
+cyan = "#75A1A0"
+green = "#AFDB80"
+magenta = "#D2A4B4"
+red = "#ED5466"
+white = "#909090"
+yellow = "#F59335"
+
+[colors.cursor]
+cursor = "#707070"
+text = "#F3F3F3"
+
+[colors.normal]
+black = "#D3D3D3"
+blue = "#4EC2E8"
+cyan = "#95C1C0"
+green = "#A1D569"
+magenta = "#FEC7CD"
+red = "#EF6B7B"
+white = "#707070"
+yellow = "#F59335"
+
+[colors.primary]
+background = "#F3F3F3"
+foreground = "#707070"

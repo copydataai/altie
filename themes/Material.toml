@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Material"
+
+[colors.bright]
+black = "#37474f"
+blue = "#81d4fa"
+cyan = "#26a69a"
+green = "#9ccc65"
+magenta = "#ad1457"
+red = "#ffa74d"
+white = "#eceff1"
+yellow = "#ffa000"
+
+[colors.cursor]
+cursor = "#eceff1"
+text = "#263238"
+
+[colors.normal]
+black = "#263238"
+blue = "#03a9f4"
+cyan = "#009688"
+green = "#8bc34a"
+magenta = "#e91e63"
+red = "#ff9800"
+white = "#cfd8dc"
+yellow = "#ffc107"
+
+[colors.primary]
+background = "#263238"
+foreground = "#eceff1"

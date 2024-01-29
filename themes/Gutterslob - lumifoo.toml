@@ -1,0 +1,31 @@
+[colors]
+author = "Gutterslob"
+name = "Lumifoo"
+
+[colors.bright]
+black = "#707172"
+blue = "#afc4e9"
+cyan = "#a4d0c1"
+green = "#aed49b"
+magenta = "#d2b1e2"
+red = "#eaaec2"
+white = "#d0d0d0"
+yellow = "#d4c3a0"
+
+[colors.cursor]
+cursor = "#888a8c"
+text = "#1e2021"
+
+[colors.normal]
+black = "#515151"
+blue = "#6b85c2"
+cyan = "#5c9d88"
+green = "#65a446"
+magenta = "#9e6bb8"
+red = "#bf6382"
+white = "#919191"
+yellow = "#ad8a43"
+
+[colors.primary]
+background = "#1e2021"
+foreground = "#888a8c"

@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Bitmute"
+
+[colors.bright]
+black = "#494949"
+blue = "#73718f"
+cyan = "#758c93"
+green = "#839d84"
+magenta = "#987397"
+red = "#b87e7e"
+white = "#aeaeae"
+yellow = "#919864"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#282828"
+blue = "#68668f"
+cyan = "#688891"
+green = "#719d72"
+magenta = "#966894"
+red = "#b76969"
+white = "#8e8e8e"
+yellow = "#909858"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Eighties (light)"
+
+[colors.bright]
+black = "#747369"
+blue = "#6699cc"
+cyan = "#66cccc"
+green = "#99cc99"
+magenta = "#cc99cc"
+red = "#f2777a"
+white = "#f2f0ec"
+yellow = "#ffcc66"
+
+[colors.cursor]
+cursor = "#515151"
+text = "#f2f0ec"
+
+[colors.normal]
+black = "#2d2d2d"
+blue = "#6699cc"
+cyan = "#66cccc"
+green = "#99cc99"
+magenta = "#cc99cc"
+red = "#f2777a"
+white = "#d3d0c8"
+yellow = "#ffcc66"
+
+[colors.primary]
+background = "#f2f0ec"
+foreground = "#515151"

@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Shapeshifter (light)"
+
+[colors.bright]
+black = "#343434"
+blue = "#3b48e3"
+cyan = "#23edda"
+green = "#0ed839"
+magenta = "#f996e2"
+red = "#e92f2f"
+white = "#f9f9f9"
+yellow = "#dddd13"
+
+[colors.cursor]
+cursor = "#102015"
+text = "#f9f9f9"
+
+[colors.normal]
+black = "#000000"
+blue = "#3b48e3"
+cyan = "#23edda"
+green = "#0ed839"
+magenta = "#f996e2"
+red = "#e92f2f"
+white = "#ababab"
+yellow = "#dddd13"
+
+[colors.primary]
+background = "#f9f9f9"
+foreground = "#102015"

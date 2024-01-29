@@ -1,0 +1,31 @@
+[colors]
+author = "iiamblack"
+name = "Iiamblack"
+
+[colors.bright]
+black = "#474747"
+blue = "#d0d0ff"
+cyan = "#6e98a4"
+green = "#a5c261"
+magenta = "#a761c2"
+red = "#ff6c5c"
+white = "#dddddd"
+yellow = "#bc9458"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#393939"
+blue = "#6d9cbe"
+cyan = "#435d75"
+green = "#519f50"
+magenta = "#9f5079"
+red = "#da4939"
+white = "#dddddd"
+yellow = "#cc7833"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

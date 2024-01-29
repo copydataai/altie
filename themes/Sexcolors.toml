@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Sex Colors"
+
+[colors.bright]
+black = "#454545"
+blue = "#587aa4"
+cyan = "#a3babf"
+green = "#b6e354"
+magenta = "#46a4ff"
+red = "#ff8d80"
+white = "#fdfdfd"
+yellow = "#fd971f"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#252525"
+blue = "#435e87"
+cyan = "#5e7175"
+green = "#a6e22e"
+magenta = "#789ec6"
+red = "#ff9f95"
+white = "#dbdcdc"
+yellow = "#fd971f"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

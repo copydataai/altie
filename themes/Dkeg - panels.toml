@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "Panels"
+
+[colors.bright]
+black = "#905749"
+blue = "#e1750f"
+cyan = "#fa8e08"
+green = "#9f582a"
+magenta = "#eaaf25"
+red = "#94431c"
+white = "#fca806"
+yellow = "#a38687"
+
+[colors.cursor]
+cursor = "#d3d3d3"
+text = "#000000"
+
+[colors.normal]
+black = "#191927"
+blue = "#4e3a4f"
+cyan = "#6b484c"
+green = "#2b4593"
+magenta = "#61372f"
+red = "#282f5e"
+white = "#744537"
+yellow = "#344276"
+
+[colors.primary]
+background = "#000000"
+foreground = "#d3d3d3"

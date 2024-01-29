@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Rezza"
+
+[colors.bright]
+black = "#252525"
+blue = "#2b4f98"
+cyan = "#a1cdcd"
+green = "#89b83f"
+magenta = "#826ab1"
+red = "#982b2b"
+white = "#dddddd"
+yellow = "#efef60"
+
+[colors.cursor]
+cursor = "#dddddd"
+text = "#222222"
+
+[colors.normal]
+black = "#191919"
+blue = "#324c80"
+cyan = "#92b19e"
+green = "#5b762f"
+magenta = "#706c9a"
+red = "#803232"
+white = "#ffffff"
+yellow = "#aa9943"
+
+[colors.primary]
+background = "#222222"
+foreground = "#dddddd"

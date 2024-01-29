@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Simple Rainbow"
+
+[colors.bright]
+black = "#888888"
+blue = "#77bee0"
+cyan = "#ffc178"
+green = "#bde077"
+magenta = "#dd91f3"
+red = "#ff8278"
+white = "#cccccc"
+yellow = "#eadc84"
+
+[colors.cursor]
+cursor = "#dcdccc"
+text = "#575757"
+
+[colors.normal]
+black = "#666666"
+blue = "#77bee0"
+cyan = "#ffc178"
+green = "#bde077"
+magenta = "#dd91f3"
+red = "#ff8278"
+white = "#dddddd"
+yellow = "#eadc84"
+
+[colors.primary]
+background = "#575757"
+foreground = "#dcdccc"

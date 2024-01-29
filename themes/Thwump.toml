@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "thwump"
+
+[colors.bright]
+black = "#505050"
+blue = "#7070d0"
+cyan = "#70d0d0"
+green = "#70d070"
+magenta = "#d070d0"
+red = "#d07070"
+white = "#f0f0f0"
+yellow = "#d0d070"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#202020"
+blue = "#7070a0"
+cyan = "#70a0a0"
+green = "#70a070"
+magenta = "#a070a0"
+red = "#a07070"
+white = "#a0a0a0"
+yellow = "#a0a070"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

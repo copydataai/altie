@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Bespin (dark)"
+
+[colors.bright]
+black = "#666666"
+blue = "#5ea6ea"
+cyan = "#afc4db"
+green = "#54be0d"
+magenta = "#9b859d"
+red = "#cf6a4c"
+white = "#baae9e"
+yellow = "#f9ee98"
+
+[colors.cursor]
+cursor = "#8a8986"
+text = "#28211c"
+
+[colors.normal]
+black = "#28211c"
+blue = "#5ea6ea"
+cyan = "#afc4db"
+green = "#54be0d"
+magenta = "#9b859d"
+red = "#cf6a4c"
+white = "#8a8986"
+yellow = "#f9ee98"
+
+[colors.primary]
+background = "#28211c"
+foreground = "#8a8986"

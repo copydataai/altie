@@ -1,0 +1,31 @@
+[colors]
+author = "earsplit"
+name = "s3r0 modified"
+
+[colors.bright]
+black = "#4A3637"
+blue = "#535C5C"
+cyan = "#6D715E"
+green = "#7B8748"
+magenta = "#775759"
+red = "#D17B49"
+white = "#C0B18B"
+yellow = "#AF865A"
+
+[colors.cursor]
+cursor = "#C0B18B"
+text = "#1F1F1F"
+
+[colors.normal]
+black = "#4A3637"
+blue = "#535C5C"
+cyan = "#6D715E"
+green = "#7B8748"
+magenta = "#775759"
+red = "#D17B49"
+white = "#C0B18B"
+yellow = "#AF865A"
+
+[colors.primary]
+background = "#1F1F1F"
+foreground = "#C0B18B"

@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Atelierheath (light)"
+
+[colors.bright]
+black = "#776977"
+blue = "#516aec"
+cyan = "#159393"
+green = "#379a37"
+magenta = "#7b59c0"
+red = "#ca402b"
+white = "#f7f3f7"
+yellow = "#bb8a35"
+
+[colors.cursor]
+cursor = "#695d69"
+text = "#f7f3f7"
+
+[colors.normal]
+black = "#1b181b"
+blue = "#516aec"
+cyan = "#159393"
+green = "#379a37"
+magenta = "#7b59c0"
+red = "#ca402b"
+white = "#ab9bab"
+yellow = "#bb8a35"
+
+[colors.primary]
+background = "#f7f3f7"
+foreground = "#695d69"

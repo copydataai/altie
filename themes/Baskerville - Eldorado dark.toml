@@ -1,0 +1,31 @@
+[colors]
+author = "Baskerville"
+name = "Eldorado dark"
+
+[colors.bright]
+black = "#777777"
+blue = "#b3d1ff"
+cyan = "#79e0ed"
+green = "#9ddeaf"
+magenta = "#fabdf0"
+red = "#ffbbb2"
+white = "#ffffff"
+yellow = "#e0ce91"
+
+[colors.cursor]
+cursor = "#a2a2a2"
+text = "#292929"
+
+[colors.normal]
+black = "#4e4e4e"
+blue = "#5879af"
+cyan = "#008592"
+green = "#468459"
+magenta = "#9c6594"
+red = "#a9635d"
+white = "#cfcfcf"
+yellow = "#84763d"
+
+[colors.primary]
+background = "#292929"
+foreground = "#a2a2a2"

@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Atelierlakeside (dark)"
+
+[colors.bright]
+black = "#5a7b8c"
+blue = "#257fad"
+cyan = "#2d8f6f"
+green = "#568c3b"
+magenta = "#5d5db1"
+red = "#d22d72"
+white = "#ebf8ff"
+yellow = "#8a8a0f"
+
+[colors.cursor]
+cursor = "#7ea2b4"
+text = "#161b1d"
+
+[colors.normal]
+black = "#161b1d"
+blue = "#257fad"
+cyan = "#2d8f6f"
+green = "#568c3b"
+magenta = "#5d5db1"
+red = "#d22d72"
+white = "#7ea2b4"
+yellow = "#8a8a0f"
+
+[colors.primary]
+background = "#161b1d"
+foreground = "#7ea2b4"

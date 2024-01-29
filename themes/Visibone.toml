@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "VisiBone"
+
+[colors.bright]
+black = "#999999"
+blue = "#99ccff"
+cyan = "#99ffff"
+green = "#99ffcc"
+magenta = "#ff99cc"
+red = "#ff9999"
+white = "#ffffff"
+yellow = "#ffcc99"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#666666"
+blue = "#6699cc"
+cyan = "#66cccc"
+green = "#66cc99"
+magenta = "#cc6699"
+red = "#cc6666"
+white = "#cccccc"
+yellow = "#cc9966"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

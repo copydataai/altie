@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Mikado"
+
+[colors.bright]
+black = "#46423b"
+blue = "#74999e"
+cyan = "#9fa590"
+green = "#b4aa30"
+magenta = "#9c818e"
+red = "#ae837a"
+white = "#c1c4bc"
+yellow = "#c7a551"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#322a2c"
+blue = "#6a8c8c"
+cyan = "#757978"
+green = "#9b9329"
+magenta = "#856774"
+red = "#a04363"
+white = "#bcbcaf"
+yellow = "#bf7a29"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

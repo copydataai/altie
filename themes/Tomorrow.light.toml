@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Tomorrow (light)"
+
+[colors.bright]
+black = "#969896"
+blue = "#81a2be"
+cyan = "#8abeb7"
+green = "#b5bd68"
+magenta = "#b294bb"
+red = "#cc6666"
+white = "#ffffff"
+yellow = "#f0c674"
+
+[colors.cursor]
+cursor = "#373b41"
+text = "#ffffff"
+
+[colors.normal]
+black = "#1d1f21"
+blue = "#81a2be"
+cyan = "#8abeb7"
+green = "#b5bd68"
+magenta = "#b294bb"
+red = "#cc6666"
+white = "#c5c8c6"
+yellow = "#f0c674"
+
+[colors.primary]
+background = "#ffffff"
+foreground = "#373b41"

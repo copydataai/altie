@@ -1,0 +1,31 @@
+[colors]
+author = "Muzieca"
+name = "Mono"
+
+[colors.bright]
+black = "#090909"
+blue = "#484848"
+cyan = "#707070"
+green = "#272727"
+magenta = "#595959"
+red = "#181818"
+white = "#818181"
+yellow = "#393939"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#000000"
+blue = "#444444"
+cyan = "#666666"
+green = "#222222"
+magenta = "#555555"
+red = "#111111"
+white = "#777777"
+yellow = "#333333"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

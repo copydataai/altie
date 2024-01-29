@@ -1,0 +1,31 @@
+[colors]
+author = "Baskerville"
+name = "Invisibone"
+
+[colors.bright]
+black = "#686868"
+blue = "#98CBFE"
+cyan = "#75DAA9"
+green = "#A3D572"
+magenta = "#E5B0FF"
+red = "#FFA7DA"
+white = "#FFFFFF"
+yellow = "#EFBD8B"
+
+[colors.cursor]
+cursor = "#A0A0A0"
+text = "#232323"
+
+[colors.normal]
+black = "#303030"
+blue = "#6095C5"
+cyan = "#3BA275"
+green = "#6D9E3F"
+magenta = "#AC7BDE"
+red = "#D370A3"
+white = "#CFCFCF"
+yellow = "#B58858"
+
+[colors.primary]
+background = "#232323"
+foreground = "#A0A0A0"

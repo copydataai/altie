@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "Canvased Pastel"
+
+[colors.bright]
+black = "#999f91"
+blue = "#c4b67a"
+cyan = "#d3d4b6"
+green = "#b2b08c"
+magenta = "#cfc995"
+red = "#9b9773"
+white = "#d6d3ac"
+yellow = "#c4bb8c"
+
+[colors.cursor]
+cursor = "#746c48"
+text = "#170f0d"
+
+[colors.normal]
+black = "#26251c"
+blue = "#534d35"
+cyan = "#7b8574"
+green = "#3d4339"
+magenta = "#646756"
+red = "#323027"
+white = "#837b61"
+yellow = "#443b2c"
+
+[colors.primary]
+background = "#170f0d"
+foreground = "#746c48"

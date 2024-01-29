@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Grayscale (light)"
+
+[colors.bright]
+black = "#525252"
+blue = "#686868"
+cyan = "#868686"
+green = "#8e8e8e"
+magenta = "#747474"
+red = "#7c7c7c"
+white = "#f7f7f7"
+yellow = "#a0a0a0"
+
+[colors.cursor]
+cursor = "#464646"
+text = "#f7f7f7"
+
+[colors.normal]
+black = "#101010"
+blue = "#686868"
+cyan = "#868686"
+green = "#8e8e8e"
+magenta = "#747474"
+red = "#7c7c7c"
+white = "#b9b9b9"
+yellow = "#a0a0a0"
+
+[colors.primary]
+background = "#f7f7f7"
+foreground = "#464646"

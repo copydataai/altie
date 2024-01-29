@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Derp"
+
+[colors.bright]
+black = "#666666"
+blue = "#74b8ef"
+cyan = "#a3babf"
+green = "#cfefb3"
+magenta = "#b85e7b"
+red = "#ef8171"
+white = "#ffffff"
+yellow = "#fff796"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#111111"
+blue = "#5297cf"
+cyan = "#5e7175"
+green = "#aece91"
+magenta = "#963c59"
+red = "#d36265"
+white = "#bebebe"
+yellow = "#e7e18c"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

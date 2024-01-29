@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Monokai (light)"
+
+[colors.bright]
+black = "#75715e"
+blue = "#66d9ef"
+cyan = "#a1efe4"
+green = "#a6e22e"
+magenta = "#ae81ff"
+red = "#f92672"
+white = "#f9f8f5"
+yellow = "#f4bf75"
+
+[colors.cursor]
+cursor = "#49483e"
+text = "#f9f8f5"
+
+[colors.normal]
+black = "#272822"
+blue = "#66d9ef"
+cyan = "#a1efe4"
+green = "#a6e22e"
+magenta = "#ae81ff"
+red = "#f92672"
+white = "#f8f8f2"
+yellow = "#f4bf75"
+
+[colors.primary]
+background = "#f9f8f5"
+foreground = "#49483e"

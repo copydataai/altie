@@ -1,0 +1,31 @@
+[colors]
+author = "hund"
+name = "hund"
+
+[colors.bright]
+black = "#666666"
+blue = "#AACCBB"
+cyan = "#42717B"
+green = "#BDE077"
+magenta = "#E16A98"
+red = "#D23D3D"
+white = "#CCCCCC"
+yellow = "#FFE863"
+
+[colors.cursor]
+cursor = "#FFFFFF"
+text = "#161616"
+
+[colors.normal]
+black = "#222222"
+blue = "#66AABB"
+cyan = "#6D878D"
+green = "#B7CE42"
+magenta = "#B7416E"
+red = "#E84F4F"
+white = "#DDDDDD"
+yellow = "#FEA63C"
+
+[colors.primary]
+background = "#161616"
+foreground = "#FFFFFF"

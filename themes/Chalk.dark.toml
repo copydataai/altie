@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Chalk (dark)"
+
+[colors.bright]
+black = "#505050"
+blue = "#6fc2ef"
+cyan = "#12cfc0"
+green = "#acc267"
+magenta = "#e1a3ee"
+red = "#fb9fb1"
+white = "#f5f5f5"
+yellow = "#ddb26f"
+
+[colors.cursor]
+cursor = "#d0d0d0"
+text = "#151515"
+
+[colors.normal]
+black = "#151515"
+blue = "#6fc2ef"
+cyan = "#12cfc0"
+green = "#acc267"
+magenta = "#e1a3ee"
+red = "#fb9fb1"
+white = "#d0d0d0"
+yellow = "#ddb26f"
+
+[colors.primary]
+background = "#151515"
+foreground = "#d0d0d0"

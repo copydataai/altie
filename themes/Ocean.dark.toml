@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Ocean (dark)"
+
+[colors.bright]
+black = "#65737e"
+blue = "#8fa1b3"
+cyan = "#96b5b4"
+green = "#a3be8c"
+magenta = "#b48ead"
+red = "#bf616a"
+white = "#eff1f5"
+yellow = "#ebcb8b"
+
+[colors.cursor]
+cursor = "#c0c5ce"
+text = "#2b303b"
+
+[colors.normal]
+black = "#2b303b"
+blue = "#8fa1b3"
+cyan = "#96b5b4"
+green = "#a3be8c"
+magenta = "#b48ead"
+red = "#bf616a"
+white = "#c0c5ce"
+yellow = "#ebcb8b"
+
+[colors.primary]
+background = "#2b303b"
+foreground = "#c0c5ce"

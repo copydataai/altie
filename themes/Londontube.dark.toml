@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Londontube (dark)"
+
+[colors.bright]
+black = "#737171"
+blue = "#009ddc"
+cyan = "#85cebc"
+green = "#00853e"
+magenta = "#98005d"
+red = "#ee2e24"
+white = "#ffffff"
+yellow = "#ffd204"
+
+[colors.cursor]
+cursor = "#d9d8d8"
+text = "#231f20"
+
+[colors.normal]
+black = "#231f20"
+blue = "#009ddc"
+cyan = "#85cebc"
+green = "#00853e"
+magenta = "#98005d"
+red = "#ee2e24"
+white = "#d9d8d8"
+yellow = "#ffd204"
+
+[colors.primary]
+background = "#231f20"
+foreground = "#d9d8d8"

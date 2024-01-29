@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Swayr"
+
+[colors.bright]
+black = "#4f4939"
+blue = "#8aa9ed"
+cyan = "#43bfe0"
+green = "#d9d138"
+magenta = "#ff8cb8"
+red = "#f07935"
+white = "#f2e8c9"
+yellow = "#ffab26"
+
+[colors.cursor]
+cursor = "#c2b9a1"
+text = "#1c1709"
+
+[colors.normal]
+black = "#1c1709"
+blue = "#315094"
+cyan = "#00617d"
+green = "#787200"
+magenta = "#5c2e40"
+red = "#8e4317"
+white = "#c2b9a1"
+yellow = "#945c00"
+
+[colors.primary]
+background = "#1c1709"
+foreground = "#c2b9a1"

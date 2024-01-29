@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Grandshell"
+
+[colors.bright]
+black = "#222222"
+blue = "#b2baf6"
+cyan = "#5af2ee"
+green = "#dcf692"
+magenta = "#f09fff"
+red = "#ffbbbb"
+white = "#eeeeee"
+yellow = "#f6df92"
+
+[colors.cursor]
+cursor = "#bebebe"
+text = "#000000"
+
+[colors.normal]
+black = "#000000"
+blue = "#5555dd"
+cyan = "#5af2ee"
+green = "#77bb33"
+magenta = "#c350ff"
+red = "#f25a5a"
+white = "#bebebe"
+yellow = "#efc334"
+
+[colors.primary]
+background = "#000000"
+foreground = "#bebebe"

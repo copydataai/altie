@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "Unsifted Wheat"
+
+[colors.bright]
+black = "#ac9377"
+blue = "#cfb48e"
+cyan = "#dfc39b"
+green = "#bca282"
+magenta = "#d1baa3"
+red = "#baa17e"
+white = "#eed8c4"
+yellow = "#c1a67e"
+
+[colors.cursor]
+cursor = "#d3d3d3"
+text = "#111111"
+
+[colors.normal]
+black = "#382c2f"
+blue = "#836e5e"
+cyan = "#917781"
+green = "#65534d"
+magenta = "#8e7766"
+red = "#48393a"
+white = "#9a846d"
+yellow = "#79665a"
+
+[colors.primary]
+background = "#111111"
+foreground = "#d3d3d3"

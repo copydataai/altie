@@ -1,0 +1,31 @@
+[colors]
+author = "Muzieca"
+name = "Pastel White"
+
+[colors.bright]
+black = "#88927e"
+blue = "#95a9d6"
+cyan = "#95e1d2"
+green = "#bde18b"
+magenta = "#b59fd6"
+red = "#dba08f"
+white = "#c9d0c2"
+yellow = "#dbda8b"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#646e5b"
+blue = "#69b2d6"
+cyan = "#69e1d3"
+green = "#a7e160"
+magenta = "#a073d6"
+red = "#db7464"
+white = "#9ea894"
+yellow = "#dbd560"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

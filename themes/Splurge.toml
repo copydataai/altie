@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Splurge"
+
+[colors.bright]
+black = "#696969"
+blue = "#a2c1f5"
+cyan = "#a0e9f2"
+green = "#a3f2a0"
+magenta = "#d2a2f5"
+red = "#f5a2b5"
+white = "#fdfdfd"
+yellow = "#f5cda2"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#4a4b4a"
+blue = "#6985d7"
+cyan = "#6fccd1"
+green = "#80d468"
+magenta = "#c86ad4"
+red = "#d7699a"
+white = "#dbdcdc"
+yellow = "#d7a169"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

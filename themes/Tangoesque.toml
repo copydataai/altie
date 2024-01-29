@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Tangoesque"
+
+[colors.bright]
+black = "#606060"
+blue = "#3465a4"
+cyan = "#46a4ff"
+green = "#c8e7a8"
+magenta = "#f57900"
+red = "#ff8d8d"
+white = "#ffffff"
+yellow = "#ffc123"
+
+[colors.cursor]
+cursor = "#aaaaaa"
+text = "#000000"
+
+[colors.normal]
+black = "#202020"
+blue = "#204a87"
+cyan = "#89b6e2"
+green = "#93d44f"
+magenta = "#ce5c00"
+red = "#ff6565"
+white = "#cccccc"
+yellow = "#eab93d"
+
+[colors.primary]
+background = "#000000"
+foreground = "#aaaaaa"

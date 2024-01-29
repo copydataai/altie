@@ -1,0 +1,31 @@
+[colors]
+author = "IWAFU"
+name = "Pretty and Pastel"
+
+[colors.bright]
+black = "#525252"
+blue = "#ACCAFF"
+cyan = "#80BFAF"
+green = "#23FD00"
+magenta = "#C4C4FF"
+red = "#FF9D80"
+white = "#E8E8D3"
+yellow = "#FFEFBF"
+
+[colors.cursor]
+cursor = "#888888"
+text = "#151515"
+
+[colors.normal]
+black = "#292929"
+blue = "#8197BF"
+cyan = "#668799"
+green = "#19CB00"
+magenta = "#8787AF"
+red = "#CF6A4C"
+white = "#888888"
+yellow = "#FAD07A"
+
+[colors.primary]
+background = "#151515"
+foreground = "#888888"

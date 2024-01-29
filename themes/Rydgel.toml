@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Rydgel"
+
+[colors.bright]
+black = "#cdb5cd"
+blue = "#98afd9"
+cyan = "#a1b5cd"
+green = "#c5f779"
+magenta = "#d7d998"
+red = "#f4a45f"
+white = "#dedede"
+yellow = "#ffffed"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#303430"
+blue = "#86a2be"
+cyan = "#a1b5cd"
+green = "#97b26b"
+magenta = "#d9b798"
+red = "#bf7979"
+white = "#ffffff"
+yellow = "#cdcdc1"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

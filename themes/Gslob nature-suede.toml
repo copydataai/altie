@@ -1,0 +1,31 @@
+[colors]
+author = "Gslob"
+name = "Nature Suede"
+
+[colors.bright]
+black = "#544b2e"
+blue = "#70a16c"
+cyan = "#778725"
+green = "#c3c13d"
+magenta = "#98724c"
+red = "#af652f"
+white = "#e4dc8c"
+yellow = "#c8b55b"
+
+[colors.cursor]
+cursor = "#746c48"
+text = "#170f0d"
+
+[colors.normal]
+black = "#392925"
+blue = "#7b854e"
+cyan = "#5c5142"
+green = "#908f32"
+magenta = "#6b5644"
+red = "#98724c"
+white = "#c8b55b"
+yellow = "#aa964c"
+
+[colors.primary]
+background = "#170f0d"
+foreground = "#746c48"

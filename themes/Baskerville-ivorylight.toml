@@ -1,0 +1,31 @@
+[colors]
+author = "Baskerville"
+name = "Ivory Light"
+
+[colors.bright]
+black = "#a1a6b2"
+blue = "#0065ca"
+cyan = "#007693"
+green = "#007427"
+magenta = "#a03196"
+red = "#b22b31"
+white = "#282c36"
+yellow = "#715f00"
+
+[colors.cursor]
+cursor = "#6d727e"
+text = "#fef9ec"
+
+[colors.normal]
+black = "#c5c1b4"
+blue = "#208ffb"
+cyan = "#00a4c1"
+green = "#00a250"
+magenta = "#d160c4"
+red = "#e75c58"
+white = "#3e424d"
+yellow = "#a08a00"
+
+[colors.primary]
+background = "#fef9ec"
+foreground = "#6d727e"

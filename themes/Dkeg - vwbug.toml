@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "VWbug"
+
+[colors.bright]
+black = "#906756"
+blue = "#c4ab98"
+cyan = "#e7ddd1"
+green = "#ad6042"
+magenta = "#d9c9b6"
+red = "#927e7e"
+white = "#faf7f2"
+yellow = "#b48b6f"
+
+[colors.cursor]
+cursor = "#746c48"
+text = "#170f0d"
+
+[colors.normal]
+black = "#261e26"
+blue = "#57403e"
+cyan = "#6e5450"
+green = "#4d353b"
+magenta = "#665453"
+red = "#312c38"
+white = "#8e7266"
+yellow = "#503b43"
+
+[colors.primary]
+background = "#170f0d"
+foreground = "#746c48"

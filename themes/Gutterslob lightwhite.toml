@@ -1,0 +1,31 @@
+[colors]
+author = "Gutterslob"
+name = "Light White"
+
+[colors.bright]
+black = "#9c9c9c"
+blue = "#567cb0"
+cyan = "#4e848a"
+green = "#4b7508"
+magenta = "#964e8f"
+red = "#a15048"
+white = "#9c9c9c"
+yellow = "#916f27"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#808080"
+blue = "#809bc4"
+cyan = "#82adad"
+green = "#8da862"
+magenta = "#aa88b2"
+red = "#c48980"
+white = "#bfbfbf"
+yellow = "#b29b7a"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

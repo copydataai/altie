@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Phrak1"
+
+[colors.bright]
+black = "#545054"
+blue = "#5054f8"
+cyan = "#50fcf8"
+green = "#50fc50"
+magenta = "#f854f8"
+red = "#f85450"
+white = "#f8fcf8"
+yellow = "#f8fc50"
+
+[colors.cursor]
+cursor = "#a8a8a8"
+text = "#000000"
+
+[colors.normal]
+black = "#000000"
+blue = "#0000a8"
+cyan = "#00a8a8"
+green = "#00a800"
+magenta = "#a800a8"
+red = "#a80000"
+white = "#a8a8a8"
+yellow = "#a85400"
+
+[colors.primary]
+background = "#000000"
+foreground = "#a8a8a8"

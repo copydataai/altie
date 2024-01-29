@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "Catch Me If You Can"
+
+[colors.bright]
+black = "#c69f77"
+blue = "#e0e0e2"
+cyan = "#eae3dc"
+green = "#d5c6b8"
+magenta = "#e4dad2"
+red = "#cab9a8"
+white = "#f6f2f0"
+yellow = "#dcd1c7"
+
+[colors.cursor]
+cursor = "#f9f9f9"
+text = "#170f0d"
+
+[colors.normal]
+black = "#130f0c"
+blue = "#aa8d70"
+cyan = "#c4bfbf"
+green = "#8d7f85"
+magenta = "#b9a38d"
+red = "#604c38"
+white = "#c4ae99"
+yellow = "#907256"
+
+[colors.primary]
+background = "#170f0d"
+foreground = "#f9f9f9"

@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Shic"
+
+[colors.bright]
+black = "#484848"
+blue = "#507f7c"
+cyan = "#927c4b"
+green = "#326f58"
+magenta = "#a387a6"
+red = "#8f5a58"
+white = "#c7c7c7"
+yellow = "#c7c575"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#494949"
+blue = "#a0c3c0"
+cyan = "#695935"
+green = "#588f7a"
+magenta = "#735e74"
+red = "#b9716e"
+white = "#b1b1b1"
+yellow = "#aaa857"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

@@ -1,0 +1,31 @@
+[colors]
+author = "Boroshlawa"
+name = "Sweet Love"
+
+[colors.bright]
+black = "#402E2E"
+blue = "#444B4B"
+cyan = "#585C49"
+green = "#647035"
+magenta = "#614445"
+red = "#AC5D2F"
+white = "#978965"
+yellow = "#8F6840"
+
+[colors.cursor]
+cursor = "#C0B18B"
+text = "#1F1F1F"
+
+[colors.normal]
+black = "#4A3637"
+blue = "#535C5C"
+cyan = "#6D715E"
+green = "#7B8748"
+magenta = "#775759"
+red = "#D17B49"
+white = "#C0B18B"
+yellow = "#AF865A"
+
+[colors.primary]
+background = "#1F1F1F"
+foreground = "#C0B18B"

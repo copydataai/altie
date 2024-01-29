@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Google (dark)"
+
+[colors.bright]
+black = "#969896"
+blue = "#3971ed"
+cyan = "#3971ed"
+green = "#198844"
+magenta = "#a36ac7"
+red = "#cc342b"
+white = "#ffffff"
+yellow = "#fba922"
+
+[colors.cursor]
+cursor = "#c5c8c6"
+text = "#1d1f21"
+
+[colors.normal]
+black = "#1d1f21"
+blue = "#3971ed"
+cyan = "#3971ed"
+green = "#198844"
+magenta = "#a36ac7"
+red = "#cc342b"
+white = "#c5c8c6"
+yellow = "#fba922"
+
+[colors.primary]
+background = "#1d1f21"
+foreground = "#c5c8c6"

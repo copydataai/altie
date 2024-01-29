@@ -1,0 +1,31 @@
+[colors]
+author = "Baskerville"
+name = "Ivory Dark"
+
+[colors.bright]
+black = "#707277"
+blue = "#98bbfb"
+cyan = "#53cad9"
+green = "#82c896"
+magenta = "#e5a4db"
+red = "#f6a299"
+white = "#f7f9ff"
+yellow = "#cab775"
+
+[colors.cursor]
+cursor = "#a4a6ab"
+text = "#2d2c28"
+
+[colors.normal]
+black = "#5b5955"
+blue = "#6a8dca"
+cyan = "#019baa"
+green = "#559a6a"
+magenta = "#b577ac"
+red = "#c4756e"
+white = "#dbdde2"
+yellow = "#9b8a4b"
+
+[colors.primary]
+background = "#2d2c28"
+foreground = "#a4a6ab"

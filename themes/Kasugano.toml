@@ -1,0 +1,31 @@
+[colors]
+author = "Kori Ayakashi"
+name = "Kasugano"
+
+[colors.bright]
+black = "#4D4D4D"
+blue = "#477AB3"
+cyan = "#95A7CC"
+green = "#52AD91"
+magenta = "#7882BF"
+red = "#899AFF"
+white = "#EDEFF2"
+yellow = "#98C9BB"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#1b1b1b"
+
+[colors.normal]
+black = "#3D3D3D"
+blue = "#31658C"
+cyan = "#8292B2"
+green = "#3EA290"
+magenta = "#596196"
+red = "#6673BF"
+white = "#C8CACC"
+yellow = "#B0EAD9"
+
+[colors.primary]
+background = "#1b1b1b"
+foreground = "#ffffff"

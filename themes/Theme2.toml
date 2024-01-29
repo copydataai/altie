@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "theme2"
+
+[colors.bright]
+black = "#484848"
+blue = "#23aaff"
+cyan = "#bbcd81"
+green = "#4b8a10"
+magenta = "#ab005b"
+red = "#be6262"
+white = "#bbbbbb"
+yellow = "#e5d95e"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#191919"
+blue = "#23ffa8"
+cyan = "#68a783"
+green = "#66b61a"
+magenta = "#ff00da"
+red = "#eb3d51"
+white = "#eaeaea"
+yellow = "#d98e1d"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

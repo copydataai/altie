@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "Color Star"
+
+[colors.bright]
+black = "#ab9e9e"
+blue = "#d0ae58"
+cyan = "#f4e199"
+green = "#bbada9"
+magenta = "#d7b559"
+red = "#b28930"
+white = "#f6f4df"
+yellow = "#c37305"
+
+[colors.cursor]
+cursor = "#d3d3d3"
+text = "#000000"
+
+[colors.normal]
+black = "#03010f"
+blue = "#6067ac"
+cyan = "#7c83c0"
+green = "#353b64"
+magenta = "#624d19"
+red = "#503b43"
+white = "#9a600f"
+yellow = "#8c2424"
+
+[colors.primary]
+background = "#000000"
+foreground = "#d3d3d3"

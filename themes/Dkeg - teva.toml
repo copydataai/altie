@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "Teva"
+
+[colors.bright]
+black = "#706d56"
+blue = "#948658"
+cyan = "#ad9152"
+green = "#909581"
+magenta = "#a19662"
+red = "#8b7852"
+white = "#c6a13f"
+yellow = "#91703a"
+
+[colors.cursor]
+cursor = "#746c48"
+text = "#170f0d"
+
+[colors.normal]
+black = "#191f31"
+blue = "#3c4435"
+cyan = "#5d5d35"
+green = "#303844"
+magenta = "#4e534f"
+red = "#282e39"
+white = "#66695d"
+yellow = "#3b444a"
+
+[colors.primary]
+background = "#170f0d"
+foreground = "#746c48"

@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "Red Phoenix"
+
+[colors.bright]
+black = "#d1d1d1"
+blue = "#ededed"
+cyan = "#f2361e"
+green = "#df9767"
+magenta = "#ed4b19"
+red = "#d2c3ad"
+white = "#fa390f"
+yellow = "#e1e1e1"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#111111"
+
+[colors.normal]
+black = "#131313"
+blue = "#6f6f6f"
+cyan = "#aaa998"
+green = "#4c3a3d"
+magenta = "#909090"
+red = "#2d2d2d"
+white = "#b1b1b1"
+yellow = "#4e4e4e"
+
+[colors.primary]
+background = "#111111"
+foreground = "#ffffff"

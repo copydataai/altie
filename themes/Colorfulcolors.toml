@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Colorful Colors"
+
+[colors.bright]
+black = "#696969"
+blue = "#79d2ff"
+cyan = "#87a8af"
+green = "#a6e179"
+magenta = "#bb5d79"
+red = "#ed4c7a"
+white = "#e2f1f6"
+yellow = "#ffdf6b"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#151515"
+blue = "#a6e2f0"
+cyan = "#5f868f"
+green = "#a6e25f"
+magenta = "#e85b92"
+red = "#ff8eaf"
+white = "#d5f1f2"
+yellow = "#f8e578"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

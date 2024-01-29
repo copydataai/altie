@@ -1,0 +1,31 @@
+[colors]
+author = "Gutterslob"
+name = "Visibone Alt. 2"
+
+[colors.bright]
+black = "#999999"
+blue = "#99CCFF"
+cyan = "#99FFCC"
+green = "#CCFF99"
+magenta = "#CC99FF"
+red = "#FF99CC"
+white = "#FFFFFF"
+yellow = "#FFCC99"
+
+[colors.cursor]
+cursor = "#CCCCCC"
+text = "#333333"
+
+[colors.normal]
+black = "#666666"
+blue = "#6699CC"
+cyan = "#66CC99"
+green = "#99CC66"
+magenta = "#9966CC"
+red = "#CC6699"
+white = "#CCCCCC"
+yellow = "#CC9966"
+
+[colors.primary]
+background = "#333333"
+foreground = "#CCCCCC"

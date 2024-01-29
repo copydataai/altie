@@ -1,0 +1,31 @@
+[colors]
+author = "earsplit"
+name = "X::Erosion"
+
+[colors.bright]
+black = "#817267"
+blue = "#71777A"
+cyan = "#556D70"
+green = "#857B52"
+magenta = "#656565"
+red = "#9F7155"
+white = "#9A875F"
+yellow = "#9C956E"
+
+[colors.cursor]
+cursor = "#BEA492"
+text = "#181512"
+
+[colors.normal]
+black = "#332D29"
+blue = "#646A6D"
+cyan = "#4B5C5E"
+green = "#746C48"
+magenta = "#605655"
+red = "#8C644C"
+white = "#504339"
+yellow = "#908A66"
+
+[colors.primary]
+background = "#181512"
+foreground = "#BEA492"

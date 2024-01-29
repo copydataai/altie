@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Orangish"
+
+[colors.bright]
+black = "#5e5e5e"
+blue = "#46aede"
+cyan = "#d6dbac"
+green = "#95e76b"
+magenta = "#e32c57"
+red = "#eb4509"
+white = "#efefef"
+yellow = "#ffac18"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#251f1f"
+blue = "#46aede"
+cyan = "#d6dbac"
+green = "#94e76b"
+magenta = "#e32c57"
+red = "#eb4509"
+white = "#efefef"
+yellow = "#ffac18"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

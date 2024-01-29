@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Dotshare"
+
+[colors.bright]
+black = "#404040"
+blue = "#4e9fb1"
+cyan = "#42717b"
+green = "#a0cf5d"
+magenta = "#8542ff"
+red = "#d23d3d"
+white = "#dddddd"
+yellow = "#f39d21"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#101010"
+blue = "#7dc1cf"
+cyan = "#6d878d"
+green = "#b8d68c"
+magenta = "#9b64fb"
+red = "#e84f4f"
+white = "#dddddd"
+yellow = "#e1aa5d"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

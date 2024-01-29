@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "tlh"
+
+[colors.bright]
+black = "#4d4d4d"
+blue = "#5a9dc8"
+cyan = "#69b8ce"
+green = "#70ff70"
+magenta = "#b29fdb"
+red = "#f00060"
+white = "#eeeeee"
+yellow = "#f9fd80"
+
+[colors.cursor]
+cursor = "#66ff66"
+text = "#101010"
+
+[colors.normal]
+black = "#1c1c1c"
+blue = "#4695c8"
+cyan = "#43afce"
+green = "#60ff60"
+magenta = "#a78edb"
+red = "#d81860"
+white = "#f3ebe2"
+yellow = "#f9fd75"
+
+[colors.primary]
+background = "#101010"
+foreground = "#66ff66"

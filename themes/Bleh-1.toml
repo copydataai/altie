@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Bleh-1"
+
+[colors.bright]
+black = "#8c847f"
+blue = "#4c83bf"
+cyan = "#4dbda8"
+green = "#95b548"
+magenta = "#a04bbd"
+red = "#bd4b76"
+white = "#848484"
+yellow = "#bd814b"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#666666"
+blue = "#657a99"
+cyan = "#65998d"
+green = "#889965"
+magenta = "#8b6599"
+red = "#996578"
+white = "#a5a5a4"
+yellow = "#998565"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

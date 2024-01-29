@@ -1,0 +1,31 @@
+[colors]
+author = "user 77"
+name = "Mashup Colors"
+
+[colors.bright]
+black = "#404040"
+blue = "#95b9de"
+cyan = "#9fa590"
+green = "#b8ca4b"
+magenta = "#ad7fa8"
+red = "#ff6c5f"
+white = "#e8d0c3"
+yellow = "#c7a551"
+
+[colors.cursor]
+cursor = "#b2a191"
+text = "#171717"
+
+[colors.normal]
+black = "#202020"
+blue = "#627a92"
+cyan = "#757978"
+green = "#707d22"
+magenta = "#75507b"
+red = "#bf3f34"
+white = "#b2a191"
+yellow = "#bf7a29"
+
+[colors.primary]
+background = "#171717"
+foreground = "#b2a191"

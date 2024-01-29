@@ -1,0 +1,31 @@
+[colors]
+author = "dkeg"
+name = "City Streets"
+
+[colors.bright]
+black = "#837c78"
+blue = "#c3bcb2"
+cyan = "#e3ddd2"
+green = "#a7a099"
+magenta = "#cbc5ba"
+red = "#89827d"
+white = "#efe8dc"
+yellow = "#c2bec1"
+
+[colors.cursor]
+cursor = "#d3d3d3"
+text = "#000000"
+
+[colors.normal]
+black = "#201e24"
+blue = "#423e41"
+cyan = "#6e6765"
+green = "#3f3d40"
+magenta = "#4e4a4b"
+red = "#2d2b30"
+white = "#837e81"
+yellow = "#413c3e"
+
+[colors.primary]
+background = "#000000"
+foreground = "#d3d3d3"

@@ -1,0 +1,31 @@
+[colors]
+author = "crshd"
+name = "X::DotShare"
+
+[colors.bright]
+black = "#404040"
+blue = "#4E9FB1"
+cyan = "#42717B"
+green = "#A0CF5D"
+magenta = "#8542FF"
+red = "#D23D3D"
+white = "#DDDDDD"
+yellow = "#F39D21"
+
+[colors.cursor]
+cursor = "#D7D0C7"
+text = "#151515"
+
+[colors.normal]
+black = "#101010"
+blue = "#7DC1CF"
+cyan = "#6D878D"
+green = "#B8D68C"
+magenta = "#9B64FB"
+red = "#E84F4F"
+white = "#DDDDDD"
+yellow = "#E1AA5D"
+
+[colors.primary]
+background = "#151515"
+foreground = "#D7D0C7"

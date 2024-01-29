@@ -1,0 +1,31 @@
+[colors]
+author = "Gutterslob"
+name = "aikofog"
+
+[colors.bright]
+black = "#4a4a4a"
+blue = "#7782cf"
+cyan = "#2ea89a"
+green = "#4fae42"
+magenta = "#b754c4"
+red = "#d76572"
+white = "#c4c4c4"
+yellow = "#a8981f"
+
+[colors.cursor]
+cursor = "#b2b3b8"
+text = "#f1eee9"
+
+[colors.normal]
+black = "#757475"
+blue = "#6e7291"
+cyan = "#637e7b"
+green = "#668462"
+magenta = "#846887"
+red = "#936a6f"
+white = "#9a9a9a"
+yellow = "#7f7b62"
+
+[colors.primary]
+background = "#f1eee9"
+foreground = "#b2b3b8"

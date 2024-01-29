@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Euphrasia"
+
+[colors.bright]
+black = "#666666"
+blue = "#45a3e6"
+cyan = "#60c6c8"
+green = "#93c724"
+magenta = "#c953ef"
+red = "#f04758"
+white = "#c0c0c0"
+yellow = "#ddb62b"
+
+[colors.cursor]
+cursor = "#1c2027"
+text = "#cfcfd9"
+
+[colors.normal]
+black = "#192033"
+blue = "#355c9a"
+cyan = "#258f8f"
+green = "#38912b"
+magenta = "#7c4f9f"
+red = "#a62a3e"
+white = "#77858c"
+yellow = "#b27d12"
+
+[colors.primary]
+background = "#cfcfd9"
+foreground = "#1c2027"

@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Muse"
+
+[colors.bright]
+black = "#555753"
+blue = "#4a5a8d"
+cyan = "#12bccb"
+green = "#27a343"
+magenta = "#893c8c"
+red = "#c60001"
+white = "#eeeeec"
+yellow = "#d5a30e"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#2e3436"
+blue = "#425387"
+cyan = "#06989a"
+green = "#447241"
+magenta = "#965d98"
+red = "#a31604"
+white = "#d3d7cf"
+yellow = "#c1951a"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

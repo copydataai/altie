@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Cloud"
+
+[colors.bright]
+black = "#5d6f74"
+blue = "#5786bc"
+cyan = "#849da2"
+green = "#63b0b0"
+magenta = "#3f3442"
+red = "#cd749c"
+white = "#d9d6cf"
+yellow = "#c0c0dd"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#222827"
+blue = "#654a96"
+cyan = "#a9d1df"
+green = "#9c75dd"
+magenta = "#625566"
+red = "#d5a8e3"
+white = "#e6ebe5"
+yellow = "#9898ae"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

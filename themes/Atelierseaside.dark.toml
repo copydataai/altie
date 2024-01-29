@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Atelierseaside (dark)"
+
+[colors.bright]
+black = "#687d68"
+blue = "#3d62f5"
+cyan = "#1999b3"
+green = "#29a329"
+magenta = "#ad2bee"
+red = "#e6193c"
+white = "#f0fff0"
+yellow = "#c3c322"
+
+[colors.cursor]
+cursor = "#8ca68c"
+text = "#131513"
+
+[colors.normal]
+black = "#131513"
+blue = "#3d62f5"
+cyan = "#1999b3"
+green = "#29a329"
+magenta = "#ad2bee"
+red = "#e6193c"
+white = "#8ca68c"
+yellow = "#c3c322"
+
+[colors.primary]
+background = "#131513"
+foreground = "#8ca68c"

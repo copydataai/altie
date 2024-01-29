@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "DWM rob"
+
+[colors.bright]
+black = "#505450"
+blue = "#7d8794"
+cyan = "#99ccff"
+green = "#c5f779"
+magenta = "#e628ba"
+red = "#f4a45f"
+white = "#dedede"
+yellow = "#ffffaf"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#151515"
+blue = "#4a5463"
+cyan = "#88aadd"
+green = "#97b26b"
+magenta = "#9c3885"
+red = "#bf7979"
+white = "#ffffff"
+yellow = "#cdcda1"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

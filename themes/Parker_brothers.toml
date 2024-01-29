@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Parker Brothers"
+
+[colors.bright]
+black = "#46423b"
+blue = "#908862"
+cyan = "#393e38"
+green = "#76550f"
+magenta = "#624a35"
+red = "#aa261f"
+white = "#a59058"
+yellow = "#b57f02"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#322a2c"
+blue = "#434045"
+cyan = "#394745"
+green = "#344b1b"
+magenta = "#5c1e25"
+red = "#79220e"
+white = "#ae8842"
+yellow = "#b45b00"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

@@ -1,0 +1,31 @@
+[colors]
+author = "Chris Kempson"
+name = "Ashes (light)"
+
+[colors.bright]
+black = "#747c84"
+blue = "#ae95c7"
+cyan = "#95aec7"
+green = "#95c7ae"
+magenta = "#c795ae"
+red = "#c7ae95"
+white = "#f3f4f5"
+yellow = "#aec795"
+
+[colors.cursor]
+cursor = "#565e65"
+text = "#f3f4f5"
+
+[colors.normal]
+black = "#1c2023"
+blue = "#ae95c7"
+cyan = "#95aec7"
+green = "#95c7ae"
+magenta = "#c795ae"
+red = "#c7ae95"
+white = "#c7ccd1"
+yellow = "#aec795"
+
+[colors.primary]
+background = "#f3f4f5"
+foreground = "#565e65"

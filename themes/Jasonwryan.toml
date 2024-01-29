@@ -1,0 +1,31 @@
+[colors]
+author = ""
+name = "Jason Wryan"
+
+[colors.bright]
+black = "#454545"
+blue = "#6bc1d0"
+cyan = "#8fadbf"
+green = "#7db37d"
+magenta = "#c18fcb"
+red = "#cc896d"
+white = "#ffffff"
+yellow = "#bfb556"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#222222"
+blue = "#4c8ea1"
+cyan = "#7c9aa6"
+green = "#6c7e55"
+magenta = "#956d9d"
+red = "#9e5641"
+white = "#909090"
+yellow = "#caaf2b"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"
