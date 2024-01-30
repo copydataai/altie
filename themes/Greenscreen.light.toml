@@ -1,7 +1,3 @@
-[colors]
-author = "Chris Kempson"
-name = "Greenscreen (light)"
-
 [colors.bright]
 black = "#007700"
 blue = "#009900"

@@ -1,7 +1,3 @@
-[colors]
-author = "dkeg"
-name = "Color Star"
-
 [colors.bright]
 black = "#ab9e9e"
 blue = "#d0ae58"

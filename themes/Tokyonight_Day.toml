@@ -1,7 +1,3 @@
-[colors]
-author = "Folke"
-name = "TokyoNight Day"
-
 [[colors.indexed_colors]]
 color = "0xb15c00"
 index = 16

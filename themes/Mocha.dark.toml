@@ -1,7 +1,3 @@
-[colors]
-author = "Chris Kempson"
-name = "Mocha (dark)"
-
 [colors.bright]
 black = "#7e705a"
 blue = "#8ab3b5"

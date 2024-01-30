@@ -1,7 +1,3 @@
-[colors]
-author = "Chris Kempson"
-name = "Grayscale (light)"
-
 [colors.bright]
 black = "#525252"
 blue = "#686868"

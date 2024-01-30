@@ -1,7 +1,3 @@
-[colors]
-author = ""
-name = "Simple Rainbow"
-
 [colors.bright]
 black = "#888888"
 blue = "#77bee0"

@@ -1,7 +1,3 @@
-[colors]
-author = "Chris Kempson"
-name = "Railscasts (light)"
-
 [colors.bright]
 black = "#5a647e"
 blue = "#6d9cbe"

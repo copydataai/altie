@@ -1,7 +1,3 @@
-[colors]
-author = "OK100"
-name = "Matrix"
-
 [colors.bright]
 black = "#000000"
 blue = "#005500"

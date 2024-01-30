@@ -1,7 +1,3 @@
-[colors]
-author = "tonsky"
-name = "Alabaster"
-
 [colors.bright]
 black = "#777777"
 blue = "#007ACC"

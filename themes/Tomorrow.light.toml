@@ -1,7 +1,3 @@
-[colors]
-author = "Chris Kempson"
-name = "Tomorrow (light)"
-
 [colors.bright]
 black = "#969896"
 blue = "#81a2be"

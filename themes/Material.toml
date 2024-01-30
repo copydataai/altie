@@ -1,7 +1,3 @@
-[colors]
-author = ""
-name = "Material"
-
 [colors.bright]
 black = "#37474f"
 blue = "#81d4fa"
