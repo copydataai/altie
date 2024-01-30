@@ -34,8 +34,4 @@ yellow = "#ebc17a"
 
 [colors.primary]
 background = "#2c2c2c"
-bright_background = "#3a3a3a"
-bright_foreground = "#d9d9d9"
-dim_background = "#202020"
-dim_foreground = "#dbdbdb"
 foreground = "#d6d6d6"
