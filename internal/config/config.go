@@ -21,8 +21,8 @@ const (
 	RouteThemes = "%s/.altie/themes"
 	// AlacrittyDir is $HOME/.config/alacritty
 	AlacrittyDir = "%s/.config/alacritty"
-	// AlacrittyConfigDir is $HOME/.config/alacritty/alacritty.yml
-	AlacrittyConfigDir = "%s/.config/alacritty/alacritty.yml"
+	// AlacrittyConfigDir is $HOME/.config/alacritty/alacritty.toml
+	AlacrittyConfigDir = "%s/.config/alacritty/alacritty.toml"
 )
 
 type Config struct {
