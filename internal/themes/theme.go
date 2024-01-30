@@ -1,30 +1,140 @@
 package themes
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
-	"strings"
 	"time"
 )
 
-var (
-	ErrNotOnRepoDir = errors.New("you are not on the repo directory")
+const (
+	githubContentDirectory = "https://api.github.com/repos/copydataai/altie/contents/themes"
 )
+
+var (
+	ErrNotOnRepoDir        = errors.New("you are not on the repo directory")
+	ErrNotFoundFilesGitHub = errors.New(fmt.Sprintf("Failed fetching %s ", githubContentDirectory))
+	ErrCouldDownload       = errors.New("I could download that theme")
+)
+
+type themeFile struct {
+	name string
+	url  string
+}
+
+func ListThemesOnline(themesDirectory string) error {
+	dirNames, err := listDirectories()
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(dirNames)
+
+	err = downloadInsertFiles(dirNames, themesDirectory)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func downloadInsertFiles(themes []themeFile, themesDirectory string) error {
+	for _, file := range themes {
+		output, err := Download(file.url)
+		if err != nil {
+			return err
+		}
+
+		err = createFile(file.name, output, themesDirectory)
+		if err != nil {
+			return err
+		}
+
+	}
+	fmt.Println("this has")
+	return nil
+}
+
+func createFile(name string, content []byte, themesDirectory string) error {
+	path := fmt.Sprintf(themesDirectory+"/%s", name)
+	f, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	_, err = f.Write(content)
+	if err1 := f.Close(); err1 != nil && err == nil {
+		err = err1
+	}
+	return err
+}
+
+func Download(url string) ([]byte, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, ErrCouldDownload
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	return body, nil
+}
+
+func listDirectories() ([]themeFile, error) {
+	themesLinks := make([]themeFile, 0)
+	resp, err := http.Get(githubContentDirectory)
+	if err != nil {
+		return nil, ErrNotFoundFilesGitHub
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, ErrNotFoundFilesGitHub
+	}
+
+	var themesGithub []map[string]any
+
+	err = json.NewDecoder(resp.Body).Decode(&themesGithub)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, item := range themesGithub {
+		nameItem, ok := item["name"]
+		if !ok {
+			continue
+		}
+
+		downloadItem, ok := item["download_url"]
+		if !ok {
+			continue
+		}
+		themesLinks = append(themesLinks, themeFile{
+			name: string(nameItem.(string)),
+			url:  string(downloadItem.(string)),
+		})
+	}
+
+	return themesLinks, nil
+}
 
 func GetRepoDirectory() (string, error) {
 	dirPath, err := os.Getwd()
 	if err != nil {
 		return "", err
 	}
-
-	if !strings.Contains(dirPath, "altie") {
-		return "", ErrNotOnRepoDir
-	}
-
-	dirPath = filepath.Dir(dirPath)
-	dirPath = filepath.Dir(dirPath)
 
 	return dirPath, nil
 }

@@ -82,15 +82,13 @@ func CreateConfig() error {
 			return nil
 		}
 
-		repoDir, err := themes.GetRepoDirectory()
+		// Create themes directory
+		err := os.MkdirAll(altieConfig.Config.ThemesDirectory, os.ModePerm)
 		if err != nil {
-			pterm.Error.Println("Please Make sure it is in the repository directory")
-
 			return err
 		}
 
-		themeRepoDir := fmt.Sprintf(config.ThemesDir, repoDir)
-		err = cp.Copy(themeRepoDir, altieConfig.Config.ThemesDirectory)
+		err = themes.ListThemesOnline(altieConfig.Config.ThemesDirectory)
 		if err != nil {
 			return err
 		}
