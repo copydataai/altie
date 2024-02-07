@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sync"
 	"time"
 )
 
@@ -32,8 +33,6 @@ func ListThemesOnline(themesDirectory string) error {
 		return err
 	}
 
-	fmt.Println(dirNames)
-
 	err = downloadInsertFiles(dirNames, themesDirectory)
 	if err != nil {
 		return err
@@ -43,19 +42,33 @@ func ListThemesOnline(themesDirectory string) error {
 }
 
 func downloadInsertFiles(themes []themeFile, themesDirectory string) error {
+	var wg sync.WaitGroup
+	errChan := make(chan error, len(themes))
+
 	for _, file := range themes {
-		output, err := Download(file.url)
-		if err != nil {
-			return err
-		}
-
-		err = createFile(file.name, output, themesDirectory)
-		if err != nil {
-			return err
-		}
-
+		wg.Add(1)
+		go func(file themeFile) {
+			defer wg.Done()
+			output, err := Download(file.url)
+			if err != nil {
+				errChan <- err
+			}
+			err = createFile(file.name, output, themesDirectory)
+			if err != nil {
+				errChan <- err
+			}
+		}(file)
 	}
-	fmt.Println("this has")
+
+	wg.Wait()
+	close(errChan)
+
+	for err := range errChan {
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -65,11 +78,13 @@ func createFile(name string, content []byte, themesDirectory string) error {
 	if err != nil {
 		return err
 	}
-	_, err = f.Write(content)
-	if err1 := f.Close(); err1 != nil && err == nil {
-		err = err1
+	defer f.Close()
+
+	if _, err = f.Write(content); err != nil {
+		return fmt.Errorf("writing to file failed %s: %w", path, err)
 	}
-	return err
+
+	return nil
 }
 
 func Download(url string) ([]byte, error) {
