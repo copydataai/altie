@@ -19,8 +19,20 @@ const (
 var (
 	ErrNotOnRepoDir        = errors.New("you are not on the repo directory")
 	ErrNotFoundFilesGitHub = errors.New(fmt.Sprintf("Failed fetching %s ", githubContentDirectory))
-	ErrCouldDownload       = errors.New("I could download that theme")
+	ErrCouldNotDownload    = errors.New("I could download that theme")
 )
+
+type GithubDownloader interface {
+	Download(url string) ([]byte, error)
+}
+
+type ThemeCreator interface {
+	CreateFile(name string, content []byte, directory string) error
+}
+
+type AltieTheme struct{}
+
+type AltieGithub struct{}
 
 type themeFile struct {
 	name string
@@ -28,12 +40,15 @@ type themeFile struct {
 }
 
 func ListThemesOnline(themesDirectory string) error {
-	dirNames, err := listDirectories()
+	dirNames, err := listDirectories(githubContentDirectory)
 	if err != nil {
 		return err
 	}
 
-	err = downloadInsertFiles(dirNames, themesDirectory)
+	altieTheme := AltieTheme{}
+	altieGithub := AltieGithub{}
+
+	err = downloadInsertFiles(dirNames, themesDirectory, altieGithub, altieTheme)
 	if err != nil {
 		return err
 	}
@@ -41,7 +56,7 @@ func ListThemesOnline(themesDirectory string) error {
 	return nil
 }
 
-func downloadInsertFiles(themes []themeFile, themesDirectory string) error {
+func downloadInsertFiles(themes []themeFile, themesDirectory string, github GithubDownloader, themeCreator ThemeCreator) error {
 	var wg sync.WaitGroup
 	errChan := make(chan error, len(themes))
 
@@ -49,11 +64,11 @@ func downloadInsertFiles(themes []themeFile, themesDirectory string) error {
 		wg.Add(1)
 		go func(file themeFile) {
 			defer wg.Done()
-			output, err := Download(file.url)
+			output, err := github.Download(file.url)
 			if err != nil {
 				errChan <- err
 			}
-			err = createFile(file.name, output, themesDirectory)
+			err = themeCreator.CreateFile(file.name, output, themesDirectory)
 			if err != nil {
 				errChan <- err
 			}
@@ -72,7 +87,7 @@ func downloadInsertFiles(themes []themeFile, themesDirectory string) error {
 	return nil
 }
 
-func createFile(name string, content []byte, themesDirectory string) error {
+func (at AltieTheme) CreateFile(name string, content []byte, themesDirectory string) error {
 	path := fmt.Sprintf(themesDirectory+"/%s", name)
 	f, err := os.Create(path)
 	if err != nil {
@@ -87,7 +102,7 @@ func createFile(name string, content []byte, themesDirectory string) error {
 	return nil
 }
 
-func Download(url string) ([]byte, error) {
+func (ag AltieGithub) Download(url string) ([]byte, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
@@ -96,7 +111,7 @@ func Download(url string) ([]byte, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, ErrCouldDownload
+		return nil, ErrCouldNotDownload
 	}
 
 	body, err := io.ReadAll(resp.Body)
@@ -106,9 +121,9 @@ func Download(url string) ([]byte, error) {
 	return body, nil
 }
 
-func listDirectories() ([]themeFile, error) {
+func listDirectories(githubContentURL string) ([]themeFile, error) {
 	themesLinks := make([]themeFile, 0)
-	resp, err := http.Get(githubContentDirectory)
+	resp, err := http.Get(githubContentURL)
 	if err != nil {
 		return nil, ErrNotFoundFilesGitHub
 	}
