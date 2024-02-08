@@ -26,29 +26,30 @@ type GithubDownloader interface {
 	Download(url string) ([]byte, error)
 }
 
+type GithubDirectories interface {
+	ListDirectories(url string) ([]themeFile, error)
+}
+
 type ThemeCreator interface {
 	CreateFile(name string, content []byte, directory string) error
 }
 
 type AltieTheme struct{}
-
 type AltieGithub struct{}
+type AltieLister struct{}
 
 type themeFile struct {
 	name string
 	url  string
 }
 
-func ListThemesOnline(themesDirectory string) error {
-	dirNames, err := listDirectories(githubContentDirectory)
+func ListThemesOnline(themesDirectory string, lister GithubDirectories, downloader GithubDownloader, creator ThemeCreator) error {
+	dirNames, err := lister.ListDirectories(githubContentDirectory)
 	if err != nil {
 		return err
 	}
 
-	altieTheme := AltieTheme{}
-	altieGithub := AltieGithub{}
-
-	err = downloadInsertFiles(dirNames, themesDirectory, altieGithub, altieTheme)
+	err = downloadInsertFiles(dirNames, themesDirectory, downloader, creator)
 	if err != nil {
 		return err
 	}
@@ -121,9 +122,9 @@ func (ag AltieGithub) Download(url string) ([]byte, error) {
 	return body, nil
 }
 
-func listDirectories(githubContentURL string) ([]themeFile, error) {
+func (al AltieLister) ListDirectories(url string) ([]themeFile, error) {
 	themesLinks := make([]themeFile, 0)
-	resp, err := http.Get(githubContentURL)
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, ErrNotFoundFilesGitHub
 	}
