@@ -88,7 +88,7 @@ func CreateConfig() error {
 			return err
 		}
 
-		err = themes.ListThemesOnline(altieConfig.Config.ThemesDirectory)
+		err = themes.ListThemesOnline(altieConfig.Config.ThemesDirectory, &themes.AltieLister{}, &themes.AltieGithub{}, &themes.AltieTheme{})
 		if err != nil {
 			return err
 		}
