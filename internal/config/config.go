@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/BurntSushi/toml"
@@ -11,19 +12,29 @@ import (
 const (
 	defaultFont     = "monoscape"
 	defaultFontSize = 14
-	// TODO: Delete after implement check in Config
-	ThemesDir = "%s/themes"
-	// ConfigDir is $HOME/.altie directory
-	ConfigDir = "%s/.altie"
-	// RouteConfig is a const to replace by $HOME/.altie/altie.conf
-	RouteConfig = "%s/.altie/altie.conf"
-	// RouteThemes use $HOME/.altie/themes
-	RouteThemes = "%s/.altie/themes"
-	// AlacrittyDir is $HOME/.config/alacritty
-	AlacrittyDir = "%s/.config/alacritty"
-	// AlacrittyConfigDir is $HOME/.config/alacritty/alacritty.toml
-	AlacrittyConfigDir = "%s/.config/alacritty/alacritty.toml"
 )
+
+// AppConfig holds all application configuration paths
+type AppConfig struct {
+	HomeDir         string
+	ConfigDir       string
+	ConfigFilePath  string
+	ThemesDir       string
+	AlacrittyDir    string
+	AlacrittyConfig string
+}
+
+func NewAppConfig(homeDir string) *AppConfig {
+	baseDir := filepath.Join(homeDir, ".altie")
+	return &AppConfig{
+		HomeDir:         homeDir,
+		ConfigDir:       baseDir,
+		ConfigFilePath:  filepath.Join(baseDir, "altie.conf"),
+		ThemesDir:       filepath.Join(baseDir, "themes"),
+		AlacrittyDir:    filepath.Join(homeDir, ".config", "alacritty"),
+		AlacrittyConfig: filepath.Join(homeDir, ".config", "alacritty", "alacritty.toml"),
+	}
+}
 
 type Config struct {
 	ThemesDirectory string `toml:"ThemesDirectory"`
@@ -42,59 +53,45 @@ type ConfigThemes struct {
 	ThemeConfig `toml:"ConfigTheme"`
 }
 
-func checkLastModThemes(homeDir string, lastMod time.Time) (bool, error) {
-	themesDir := fmt.Sprintf(RouteThemes, homeDir)
-
+func checkLastModThemes(themesDir string, lastMod time.Time) (bool, error) {
 	info, err := os.Stat(themesDir)
 	if err != nil {
 		return false, err
 	}
 
-	difference := info.ModTime().Compare(lastMod)
-	if difference < 1 {
-		return false, nil
-	}
-
-	return true, nil
+	return info.ModTime().After(lastMod), nil
 }
 
-func (config *ConfigThemes) SetModifiedThemes(homeDir string, lastMod time.Time, listThemes []string) error {
+func (config *ConfigThemes) SetModifiedThemes(appConfig *AppConfig, lastMod time.Time, listThemes []string) error {
 	config.LastMod = lastMod.Format(time.RFC3339)
 	config.ThemeConfig.Themes = listThemes
 
-	configFile, err := os.Create(fmt.Sprintf(RouteConfig, homeDir))
+	configFile, err := os.Create(appConfig.ConfigFilePath)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to create config file: %w", err)
 	}
 
 	defer configFile.Close()
 
-	err = encodeTomlConfig(configFile, config)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return encodeTomlConfig(configFile, config)
 }
 
-func CreateConfig(mainDir string) error {
-	configDir := fmt.Sprintf(ConfigDir, mainDir)
-
-	err := os.MkdirAll(configDir, os.ModePerm)
+func CreateConfig(appConfig *AppConfig) error {
+	err := os.MkdirAll(appConfig.ConfigDir, os.ModePerm)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to create config directory: %w", err)
 	}
 
-	configFile, err := os.Create(fmt.Sprintf(RouteConfig, mainDir))
+	configFile, err := os.Create(appConfig.ConfigFilePath)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to create config file: %w", err)
 	}
 
 	defer configFile.Close()
 
 	defaultConfig := &ConfigThemes{
 		Config{
-			ThemesDirectory: fmt.Sprintf(RouteThemes, mainDir),
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig{
 			Themes:   []string{},
@@ -104,18 +101,13 @@ func CreateConfig(mainDir string) error {
 		},
 	}
 
-	err = encodeTomlConfig(configFile, defaultConfig)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return encodeTomlConfig(configFile, defaultConfig)
 }
 
 func encodeTomlConfig(configFile *os.File, configTheme *ConfigThemes) error {
 	err := toml.NewEncoder(configFile).Encode(configTheme)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to encode TOML config: %w", err)
 	}
 
 	return nil
@@ -124,18 +116,16 @@ func encodeTomlConfig(configFile *os.File, configTheme *ConfigThemes) error {
 func GetHomeDir() (string, error) {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("failed to get home directory: %w", err)
 	}
 
 	return homeDir, nil
 }
 
-func CheckConfig(configDir string) (*ConfigThemes, error) {
+func CheckConfig(configFilePath string) (*ConfigThemes, error) {
 	configAltie := &ConfigThemes{}
-
-	_, err := toml.DecodeFile(configDir, configAltie)
-	if err != nil {
-		return nil, err
+	if _, err := toml.DecodeFile(configFilePath, configAltie); err != nil {
+		return nil, fmt.Errorf("failed to decode config file: %w", err)
 	}
 
 	return configAltie, nil

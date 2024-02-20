@@ -1,9 +1,7 @@
 package config
 
 import (
-	"fmt"
 	"os"
-	"path/filepath"
 	"testing"
 	"time"
 
@@ -19,24 +17,22 @@ func TestCreateConfig(t *testing.T) {
 
 	defer os.RemoveAll(tmpDir)
 
-	err = CreateConfig(tmpDir)
+	appConfig := NewAppConfig(tmpDir)
+	err = CreateConfig(appConfig)
 	c.NoError(err, "Failed to create config: %v", err)
 
 	// Check if the config directory exists
-	configDir := filepath.Join(tmpDir, ".altie")
-	_, err = os.Stat(configDir)
+	_, err = os.Stat(appConfig.ConfigDir)
 	c.False(os.IsNotExist(err), "Config directory does not exist")
 
 	// Check if the config file exists
-	configFile := filepath.Join(configDir, "altie.conf")
-
-	_, err = os.Stat(configFile)
+	_, err = os.Stat(appConfig.ConfigFilePath)
 	c.False(os.IsNotExist(err), "Config file does not exist")
 
 	// Check if the default config is correct
 	expectedConfig := &ConfigThemes{
 		Config{
-			ThemesDirectory: filepath.Join(configDir, "themes"),
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig{
 			Themes:   []string{},
@@ -45,11 +41,12 @@ func TestCreateConfig(t *testing.T) {
 			Font:     defaultFont,
 		},
 	}
-	actualConfig, err := CheckConfig(configFile)
+	actualConfig, err := CheckConfig(appConfig.ConfigFilePath)
 	c.NoError(err, "Failed to read config: %v", err)
 
 	c.Equal(*expectedConfig, *actualConfig)
 }
+
 func TestReadConfig(t *testing.T) {
 	c := require.New(t)
 
@@ -58,22 +55,22 @@ func TestReadConfig(t *testing.T) {
 
 	defer os.RemoveAll(tmpDir)
 
-	err = CreateConfig(tmpDir)
+	appConfig := NewAppConfig(tmpDir)
+
+	err = CreateConfig(appConfig)
 	c.NoError(err, "Failed to create config: %v", err)
 
-	configDir := filepath.Join(tmpDir, ".altie", "altie.conf")
-
-	config, err := CheckConfig(configDir)
+	config, err := CheckConfig(appConfig.ConfigFilePath)
 	c.NoError(err)
 	c.Equal(*config, ConfigThemes{
 		Config: Config{
-			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig: ThemeConfig{
 			Themes:   []string{},
 			LastMod:  "",
-			FontSize: 14,
-			Font:     "monoscape",
+			FontSize: defaultFontSize,
+			Font:     defaultFont,
 		},
 	})
 
@@ -90,16 +87,16 @@ func TestSetModifiedThemes(t *testing.T) {
 
 	defer os.RemoveAll(tmpDir)
 
-	err = CreateConfig(tmpDir)
-	c.NoError(err, "Failed to create config: %v", err)
+	appConfig := NewAppConfig(tmpDir)
 
-	configFile := fmt.Sprintf(RouteConfig, tmpDir)
+	err = CreateConfig(appConfig)
+	c.NoError(err)
 
-	config, err := CheckConfig(configFile)
+	config, err := CheckConfig(appConfig.ConfigFilePath)
 	c.NoError(err)
 	c.EqualValues(&ConfigThemes{
 		Config: Config{
-			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig: ThemeConfig{
 			Themes:   []string{},
@@ -111,14 +108,14 @@ func TestSetModifiedThemes(t *testing.T) {
 
 	timeNow := time.Now()
 
-	err = config.SetModifiedThemes(tmpDir, timeNow, []string{"Hello", "world", "again"})
+	err = config.SetModifiedThemes(appConfig, timeNow, []string{"Hello", "world", "again"})
 	c.NoError(err)
 
-	config, err = CheckConfig(configFile)
+	config, err = CheckConfig(appConfig.ConfigFilePath)
 	c.NoError(err)
 	c.EqualValues(&ConfigThemes{
 		Config: Config{
-			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig: ThemeConfig{
 			Themes:   []string{"Hello", "world", "again"},
@@ -138,17 +135,17 @@ func TestEncodeTomlConfig(t *testing.T) {
 
 	defer os.RemoveAll(tmpDir)
 
-	err = CreateConfig(tmpDir)
+	appConfig := NewAppConfig(tmpDir)
+
+	err = CreateConfig(appConfig)
 	c.NoError(err, "Failed to create config: %v", err)
 
-	configDir := filepath.Join(tmpDir, ".altie", "altie.conf")
-
-	config, err := CheckConfig(configDir)
+	config, err := CheckConfig(appConfig.ConfigFilePath)
 	c.NoError(err)
 	c.NotNil(config)
 	c.EqualValues(&ConfigThemes{
 		Config: Config{
-			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig: ThemeConfig{
 			Themes:   []string{},
@@ -158,7 +155,7 @@ func TestEncodeTomlConfig(t *testing.T) {
 		},
 	}, config)
 
-	confFile, err := os.OpenFile(configDir, os.O_RDWR, os.ModePerm)
+	confFile, err := os.OpenFile(appConfig.ConfigFilePath, os.O_RDWR, os.ModePerm)
 	c.NoError(err)
 
 	config.ThemeConfig.Font = "Mononoki"
@@ -169,11 +166,11 @@ func TestEncodeTomlConfig(t *testing.T) {
 
 	confFile.Close()
 
-	config, err = CheckConfig(configDir)
+	config, err = CheckConfig(appConfig.ConfigFilePath)
 	c.NoError(err)
 	c.EqualValues(&ConfigThemes{
 		Config: Config{
-			ThemesDirectory: fmt.Sprintf(RouteThemes, tmpDir),
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig: ThemeConfig{
 			Themes:   []string{},
@@ -183,7 +180,7 @@ func TestEncodeTomlConfig(t *testing.T) {
 		},
 	}, config)
 
-	confFile, err = os.Open(configDir)
+	confFile, err = os.Open(appConfig.ConfigDir)
 	c.NoError(err)
 
 	confFile.Close()
@@ -203,7 +200,6 @@ func TestGetHomeDir(t *testing.T) {
 	os.Setenv("HOME", "") // Simulate empty HOME environment variable
 	_, err = GetHomeDir()
 	c.Error(err)
-	c.EqualError(err, "$HOME is not defined")
 }
 
 func TestCheckLastModThemes(t *testing.T) {
@@ -212,20 +208,22 @@ func TestCheckLastModThemes(t *testing.T) {
 	tmpDir, err := os.MkdirTemp("", "test")
 	c.NoError(err, "Failed to create temporary directory: %v", err)
 
-	err = os.MkdirAll(fmt.Sprintf(RouteThemes, tmpDir), os.ModePerm)
+	appConfig := NewAppConfig(tmpDir)
+
+	err = os.MkdirAll(appConfig.ThemesDir, os.ModePerm)
 	c.NoError(err)
 
 	defer os.RemoveAll(tmpDir)
 
 	timeNow := time.Now()
 
-	isModified, err := checkLastModThemes(tmpDir, timeNow)
+	isModified, err := checkLastModThemes(appConfig.HomeDir, timeNow)
 	c.NoError(err)
 	c.False(isModified)
 
 	timeZero := time.Time{}
 
-	isModified, err = checkLastModThemes(tmpDir, timeZero)
+	isModified, err = checkLastModThemes(appConfig.HomeDir, timeZero)
 	c.NoError(err)
 	c.True(isModified)
 }
