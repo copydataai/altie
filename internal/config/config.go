@@ -125,7 +125,7 @@ func GetHomeDir() (string, error) {
 func CheckConfig(configFilePath string) (*ConfigThemes, error) {
 	configAltie := &ConfigThemes{}
 	if _, err := toml.DecodeFile(configFilePath, configAltie); err != nil {
-		return nil, fmt.Errorf("failed to decode config file: %w", err)
+		return nil, err
 	}
 
 	return configAltie, nil

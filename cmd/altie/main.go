@@ -11,7 +11,7 @@ import (
 	"github.com/pterm/pterm"
 )
 
-func ListThemes(altieConfig *config.ConfigThemes, homeDir string) error {
+func ListThemes(altieConfig *config.ConfigThemes, appConfig *config.AppConfig) error {
 	dirs, err := themes.ListThemes(altieConfig.Config.ThemesDirectory)
 	if err != nil {
 		return err
@@ -24,16 +24,15 @@ func ListThemes(altieConfig *config.ConfigThemes, homeDir string) error {
 
 	path := fmt.Sprintf(altieConfig.Config.ThemesDirectory+"/%s", selectedOption)
 	pterm.Info.Println(path)
-	alacrittyConfDir := fmt.Sprintf(config.AlacrittyConfigDir, homeDir)
 
-	backupTheme, err := themes.BackUpTheme(alacrittyConfDir)
+	backupTheme, err := themes.BackUpTheme(appConfig.AlacrittyConfig)
 	if err != nil {
 		return err
 	}
 
 	pterm.Info.Printfln("The last theme was saved as %s", backupTheme)
 
-	err = cp.Copy(path, alacrittyConfDir)
+	err = cp.Copy(path, appConfig.AlacrittyConfig)
 	if err != nil {
 		return err
 	}
@@ -49,9 +48,9 @@ func CreateConfig() error {
 		return err
 	}
 
-	configDir := fmt.Sprintf(config.RouteConfig, homeDir)
+	appConfig := config.NewAppConfig(homeDir)
 
-	altieConfig, err := config.CheckConfig(configDir)
+	altieConfig, err := config.CheckConfig(appConfig.ConfigFilePath)
 	if os.IsNotExist(err) {
 		pterm.Printfln("Do you want to create a default altie config in %s/.altie/altie.conf?", homeDir)
 		result, _ := pterm.DefaultInteractiveConfirm.Show()
@@ -60,13 +59,13 @@ func CreateConfig() error {
 			// Create a new error when he press CTRL+C
 			return nil
 		}
-		err = config.CreateConfig(homeDir)
+		err = config.CreateConfig(appConfig)
 		if err != nil {
 			return err
 		}
 
 		pterm.Info.Printfln("it's created the altie.conf in %s/.altie/altie.conf", homeDir)
-		altieConfig, err = config.CheckConfig(configDir)
+		altieConfig, err = config.CheckConfig(appConfig.ConfigFilePath)
 	}
 
 	if err != nil {
@@ -96,7 +95,7 @@ func CreateConfig() error {
 		pterm.Info.Printfln("it's created the themes in %s/.altie/themes", homeDir)
 	}
 
-	err = ListThemes(altieConfig, homeDir)
+	err = ListThemes(altieConfig, appConfig)
 	if err != nil {
 		return err
 	}

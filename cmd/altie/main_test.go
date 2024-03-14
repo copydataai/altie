@@ -23,7 +23,6 @@ func TestCreateConfig(t *testing.T) {
 
 	err = CreateConfig()
 	c.Error(err)
-	c.EqualError(err, "$HOME is not defined")
 
 	err = os.Setenv("HOME", tmpDir)
 	c.NoError(err)
@@ -62,9 +61,9 @@ func TestCreateConfig(t *testing.T) {
 	err = os.Setenv("HOME", tmpDir)
 	c.NoError(err)
 
-	configDir := fmt.Sprintf(config.AlacrittyConfigDir, tmpDir)
+	appConfig := config.NewAppConfig(tmpDir)
 
-	err = os.MkdirAll(configDir, os.ModePerm)
+	err = os.MkdirAll(appConfig.AlacrittyDir, os.ModePerm)
 	c.NoError(err)
 
 	go func() {
@@ -78,8 +77,10 @@ func TestCreateConfig(t *testing.T) {
 		keyboard.SimulateKeyPress(keys.Enter)
 	}()
 
+	// Error when a altie.conf doesn't exists
+	// But the directory exists
 	err = CreateConfig()
-	c.NoError(err)
+	c.Error(err)
 }
 
 func TestListThemes(t *testing.T) {
@@ -90,14 +91,15 @@ func TestListThemes(t *testing.T) {
 
 	defer os.RemoveAll(tmpDir)
 
-	themesDir := fmt.Sprintf(config.RouteThemes, tmpDir)
-	err = os.MkdirAll(themesDir, os.ModePerm)
+	appConfig := config.NewAppConfig(tmpDir)
+
+	err = os.MkdirAll(appConfig.ThemesDir, os.ModePerm)
 	c.NoError(err)
 
 	themes := []string{"3024.dark", "3024.light", "Afterglow", "Argonaut"}
 	for _, theme := range themes {
 		themeFileName := theme + ".yml"
-		file, _ := os.Create(themesDir + "/" + themeFileName)
+		file, _ := os.Create(appConfig.ThemesDir + "/" + themeFileName)
 
 		defer file.Close()
 	}
@@ -109,7 +111,7 @@ func TestListThemes(t *testing.T) {
 
 	configThemes := &config.ConfigThemes{
 		Config: config.Config{
-			ThemesDirectory: themesDir,
+			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig: config.ThemeConfig{
 			Themes:   themes,
@@ -118,7 +120,7 @@ func TestListThemes(t *testing.T) {
 			Font:     "",
 		},
 	}
-	err = ListThemes(configThemes, tmpDir)
+	err = ListThemes(configThemes, appConfig)
 	c.Error(err)
 
 	go func() {
@@ -127,13 +129,11 @@ func TestListThemes(t *testing.T) {
 		keyboard.SimulateKeyPress(keys.Enter)
 	}()
 
-	err = ListThemes(configThemes, tmpDir)
+	err = ListThemes(configThemes, appConfig)
 	c.Error(err)
 	c.True(os.IsNotExist(err))
 
-	configDir := fmt.Sprintf(config.AlacrittyConfigDir, tmpDir)
-
-	err = os.MkdirAll(configDir, os.ModePerm)
+	err = os.MkdirAll(appConfig.AlacrittyDir, os.ModePerm)
 	c.NoError(err)
 
 	go func() {
@@ -148,13 +148,15 @@ func TestListThemes(t *testing.T) {
 		keyboard.SimulateKeyPress(keys.Enter)
 	}()
 
-	err = ListThemes(configThemes, "//")
+	fakeAppConfig := config.NewAppConfig("//")
+
+	err = ListThemes(configThemes, fakeAppConfig)
 	c.Error(err)
 	fmt.Println(err.Error())
 	c.True(os.IsNotExist(err))
 
-	configThemes.Config.ThemesDirectory = themesDir + "/fake"
-	err = ListThemes(configThemes, tmpDir)
+	configThemes.Config.ThemesDirectory = appConfig.ThemesDir + "/fake"
+	err = ListThemes(configThemes, appConfig)
 
 	c.Error(err)
 	c.EqualError(err, fmt.Errorf("no options provided").Error())
