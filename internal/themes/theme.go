@@ -10,6 +10,9 @@ import (
 	"path/filepath"
 	"sync"
 	"time"
+
+	"github.com/BurntSushi/toml"
+	"github.com/copydataai/altie/internal/config"
 )
 
 const (
@@ -210,4 +213,52 @@ func CheckAltieThemes(dirThemes string) error {
 	}
 
 	return nil
+}
+
+func ApplyFontTheme(pathConfig string, themeConfig *config.ThemeConfig) error {
+	font := themeConfig.Font
+	fontSize := themeConfig.FontSize
+
+	alacrittyConfig, err := CheckAlacrittyConfig(pathConfig)
+	if err != nil {
+		return err
+	}
+
+	// TODO: change the map model to struct model
+	alacrittyConfig["font"] = map[string]any{
+		"normal": map[string]string{
+			"family": font,
+		},
+		"bold": map[string]string{
+			"family": font,
+		},
+		"italic": map[string]string{
+			"family": font,
+		},
+		"bold_italic": map[string]string{
+			"family": font,
+		},
+		"size": fontSize,
+	}
+
+	alacrittyFile, err := os.OpenFile(pathConfig, os.O_WRONLY, os.ModePerm)
+	if err != nil {
+		return err
+	}
+
+	err = toml.NewEncoder(alacrittyFile).Encode(alacrittyConfig)
+	if err != nil {
+		return fmt.Errorf("failed to encode TOML config: %w", err)
+	}
+
+	return nil
+}
+
+func CheckAlacrittyConfig(pathConfig string) (map[string]any, error) {
+	config := make(map[string]any)
+	if _, err := toml.DecodeFile(pathConfig, &config); err != nil {
+		return config, err
+	}
+
+	return config, nil
 }

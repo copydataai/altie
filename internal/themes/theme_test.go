@@ -12,6 +12,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/copydataai/altie/internal/config"
 	"github.com/stretchr/testify/require"
 )
 
@@ -351,4 +352,42 @@ func TestCheckAltieThemes(t *testing.T) {
 	nonExistingDir := "NonExistingDir"
 	err = CheckAltieThemes(nonExistingDir)
 	c.Error(err)
+}
+
+func TestCheckAlacrittyThemes(t *testing.T) {
+	c := require.New(t)
+
+	homeDir, err := config.GetHomeDir()
+	c.NoError(err)
+
+	appConfig := config.NewAppConfig(homeDir)
+
+	_, err = CheckAlacrittyConfig(appConfig.AlacrittyConfig)
+	c.NoError(err)
+
+	// TODO: finish error cases
+
+	// Apply font theme
+}
+
+func TestApplyFontTheme(t *testing.T) {
+	c := require.New(t)
+
+	homeDir, err := config.GetHomeDir()
+	c.NoError(err)
+
+	appConfig := config.NewAppConfig(homeDir)
+
+	configThemes := config.ThemeConfig{
+		Themes:   []string{},
+		LastMod:  "",
+		FontSize: 10,
+		Font:     "SpaceMono Nerd Font",
+	}
+
+	err = ApplyFontTheme(appConfig.AlacrittyConfig, &configThemes)
+	c.NoError(err)
+
+	// TODO: finish the test error cases and verify font text
+	// Apply font theme
 }
