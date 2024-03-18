@@ -383,10 +383,12 @@ func TestCheckAlacrittyThemes(t *testing.T) {
 func TestApplyFontTheme(t *testing.T) {
 	c := require.New(t)
 
-	homeDir, err := config.GetHomeDir()
+	tmpDir, err := os.MkdirTemp("", "test")
 	c.NoError(err)
 
-	appConfig := config.NewAppConfig(homeDir)
+	appConfig := config.NewAppConfig(tmpDir)
+	err = os.MkdirAll(appConfig.AlacrittyDir, os.ModePerm)
+	c.NoError(err)
 
 	configThemes := config.ThemeConfig{
 		Themes:   []string{},
@@ -395,9 +397,25 @@ func TestApplyFontTheme(t *testing.T) {
 		Font:     "SpaceMono Nerd Font",
 	}
 
+	// file doesn't exist
+	err = ApplyFontTheme(appConfig.AlacrittyConfig, &configThemes)
+	c.Error(err)
+
+	f, err := os.Create(appConfig.AlacrittyConfig)
+	c.NoError(err)
+	c.NoError(f.Close())
+
 	err = ApplyFontTheme(appConfig.AlacrittyConfig, &configThemes)
 	c.NoError(err)
 
-	// TODO: finish the test error cases and verify font text
-	// Apply font theme
+	confThemes, err := CheckAlacrittyConfig(appConfig.AlacrittyConfig)
+	c.NoError(err)
+	c.Equal(confThemes, map[string]any{
+		"font": map[string]any{
+			"bold":        map[string]any{"family": "SpaceMono Nerd Font"},
+			"bold_italic": map[string]any{"family": "SpaceMono Nerd Font"},
+			"italic":      map[string]any{"family": "SpaceMono Nerd Font"},
+			"normal":      map[string]any{"family": "SpaceMono Nerd Font"},
+			"size":        int64(10),
+		}})
 }
