@@ -357,17 +357,27 @@ func TestCheckAltieThemes(t *testing.T) {
 func TestCheckAlacrittyThemes(t *testing.T) {
 	c := require.New(t)
 
-	homeDir, err := config.GetHomeDir()
+	tmpDir, err := os.MkdirTemp("", "test")
 	c.NoError(err)
 
-	appConfig := config.NewAppConfig(homeDir)
-
-	_, err = CheckAlacrittyConfig(appConfig.AlacrittyConfig)
+	appConfig := config.NewAppConfig(tmpDir)
+	err = os.MkdirAll(appConfig.AlacrittyDir, os.ModePerm)
 	c.NoError(err)
 
-	// TODO: finish error cases
+	alConf, err := CheckAlacrittyConfig(appConfig.AlacrittyConfig)
+	c.Error(err)
+	c.Equal(alConf, map[string]any{})
 
-	// Apply font theme
+	f, err := os.Create(appConfig.AlacrittyConfig)
+	c.NoError(err)
+	c.NoError(f.Close())
+
+	err = config.CreateConfig(appConfig)
+	c.NoError(err)
+
+	alConf, err = CheckAlacrittyConfig(appConfig.AlacrittyConfig)
+	c.NoError(err)
+	c.Equal(alConf, map[string]any{})
 }
 
 func TestApplyFontTheme(t *testing.T) {

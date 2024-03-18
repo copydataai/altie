@@ -241,7 +241,7 @@ func ApplyFontTheme(pathConfig string, themeConfig *config.ThemeConfig) error {
 		"size": fontSize,
 	}
 
-	alacrittyFile, err := os.OpenFile(pathConfig, os.O_WRONLY, os.ModePerm)
+	alacrittyFile, err := os.OpenFile(pathConfig, os.O_WRONLY, os.ModeAppend)
 	if err != nil {
 		return err
 	}
