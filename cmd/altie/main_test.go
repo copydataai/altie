@@ -8,7 +8,9 @@ import (
 
 	"atomicgo.dev/keyboard"
 	"atomicgo.dev/keyboard/keys"
+	"github.com/BurntSushi/toml"
 	"github.com/copydataai/altie/internal/config"
+	"github.com/copydataai/altie/internal/themes"
 	"github.com/stretchr/testify/require"
 )
 
@@ -17,7 +19,6 @@ func TestCreateConfig(t *testing.T) {
 
 	tmpDir, err := os.MkdirTemp("", "test")
 	c.NoError(err, "Failed to create temporary directory: %v", err)
-
 	err = os.Unsetenv("HOME")
 	c.NoError(err)
 
@@ -96,8 +97,8 @@ func TestListThemes(t *testing.T) {
 	err = os.MkdirAll(appConfig.ThemesDir, os.ModePerm)
 	c.NoError(err)
 
-	themes := []string{"3024.dark", "3024.light", "Afterglow", "Argonaut"}
-	for _, theme := range themes {
+	them := []string{"3024.dark", "3024.light", "Afterglow", "Argonaut"}
+	for _, theme := range them {
 		themeFileName := theme + ".yml"
 		file, _ := os.Create(appConfig.ThemesDir + "/" + themeFileName)
 
@@ -114,7 +115,7 @@ func TestListThemes(t *testing.T) {
 			ThemesDirectory: appConfig.ThemesDir,
 		},
 		ThemeConfig: config.ThemeConfig{
-			Themes:   themes,
+			Themes:   them,
 			LastMod:  "",
 			FontSize: 0,
 			Font:     "",
@@ -161,4 +162,87 @@ func TestListThemes(t *testing.T) {
 	c.Error(err)
 	c.EqualError(err, fmt.Errorf("no options provided").Error())
 
+}
+
+func TestApplyFontTheme(t *testing.T) {
+	c := require.New(t)
+
+	tmpDir, err := os.MkdirTemp("", "test")
+	c.NoError(err)
+
+	defer os.RemoveAll(tmpDir)
+
+	appConfig := config.NewAppConfig(tmpDir)
+
+	err = os.MkdirAll(appConfig.ThemesDir, os.ModePerm)
+	c.NoError(err)
+
+	them := []string{"3024.dark", "3024.light", "Afterglow", "Argonaut"}
+	for _, theme := range them {
+		themeFileName := theme + ".yml"
+		file, _ := os.Create(appConfig.ThemesDir + "/" + themeFileName)
+
+		defer file.Close()
+	}
+	// TODO: Modify this config
+	configThemes := &config.ConfigThemes{
+		Config: config.Config{
+			ThemesDirectory: appConfig.ThemesDir,
+		},
+		ThemeConfig: config.ThemeConfig{
+			Themes:   them,
+			LastMod:  "",
+			FontSize: 12,
+			Font:     "SpaceMono Nerd Font",
+		},
+	}
+
+	err = os.MkdirAll(appConfig.AlacrittyDir, os.ModePerm)
+	c.NoError(err)
+
+	f, err := os.Create(appConfig.AlacrittyConfig)
+	c.NoError(err)
+
+	err = toml.NewEncoder(f).Encode(configThemes)
+	c.NoError(err)
+
+	c.NoError(f.Close())
+
+	err = config.CreateConfig(appConfig)
+	c.NoError(err)
+
+	go func() {
+		keyboard.SimulateKeyPress(keys.Down)
+		keyboard.SimulateKeyPress(keys.Down)
+		keyboard.SimulateKeyPress(keys.Enter)
+	}()
+
+	err = ListThemes(configThemes, appConfig)
+	c.NoError(err)
+
+	f, err = os.Open(appConfig.ConfigDir)
+	c.NoError(err)
+
+	prevConfig, err := themes.CheckAlacrittyConfig(appConfig.AlacrittyConfig)
+	c.NoError(err)
+
+	fmt.Println(prevConfig)
+
+	go func() {
+		keyboard.SimulateKeyPress(keys.Down)
+		keyboard.SimulateKeyPress(keys.Down)
+		keyboard.SimulateKeyPress(keys.Enter)
+	}()
+
+	fakeAppConfig := config.NewAppConfig("//")
+
+	err = ListThemes(configThemes, fakeAppConfig)
+	c.Error(err)
+	fmt.Println(err.Error())
+	c.True(os.IsNotExist(err))
+
+	configThemes.Config.ThemesDirectory = appConfig.ThemesDir + "/fake"
+	err = ListThemes(configThemes, appConfig)
+	c.Error(err)
+	c.EqualError(err, fmt.Errorf("no options provided").Error())
 }
