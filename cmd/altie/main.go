@@ -37,6 +37,11 @@ func ListThemes(altieConfig *config.ConfigThemes, appConfig *config.AppConfig) e
 		return err
 	}
 
+	err = themes.ApplyFontTheme(appConfig.AlacrittyConfig, &altieConfig.ThemeConfig)
+	if err != nil {
+		return err
+	}
+
 	pterm.Success.Printfln("Selected option: %s has been applied successful", pterm.Green(selectedOption))
 
 	return nil
