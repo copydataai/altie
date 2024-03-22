@@ -360,6 +360,8 @@ func TestCheckAlacrittyThemes(t *testing.T) {
 	tmpDir, err := os.MkdirTemp("", "test")
 	c.NoError(err)
 
+	defer os.RemoveAll(tmpDir)
+
 	appConfig := config.NewAppConfig(tmpDir)
 	err = os.MkdirAll(appConfig.AlacrittyDir, os.ModePerm)
 	c.NoError(err)
@@ -385,6 +387,8 @@ func TestApplyFontTheme(t *testing.T) {
 
 	tmpDir, err := os.MkdirTemp("", "test")
 	c.NoError(err)
+
+	defer os.RemoveAll(tmpDir)
 
 	appConfig := config.NewAppConfig(tmpDir)
 	err = os.MkdirAll(appConfig.AlacrittyDir, os.ModePerm)
