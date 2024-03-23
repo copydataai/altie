@@ -1,9 +1,17 @@
-# 🌈 Alacritty-themes built with Go 🐻 
+<div align="center">
+    <h1 align="center">Altie</h1>
+    <h3>A simple way to change themes and font for alacritty 💟</h3>
+</div>
+<div align="center">
+  <a href="https://github.com/copydataai/altie/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-purple"></a>
+</div>
+<br />
 
-An alternative to [alacritty-themes](https://github.com/rajasegar/alacritty-themes) but in Go. 
 
-## TODO
-- [ ] Implement an append to change just the colors and leave the default config
+## Todo
+- [ ] Refactor to a TUI simpler than pterm
+- [ ] implement tags to change font
+- [ ] implement a select font
 
 ## Installation
 ### Online using go install
